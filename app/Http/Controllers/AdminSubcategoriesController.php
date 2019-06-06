@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Country;
-use App\City;
+use App\Category;
+use App\Subcategory;
 use Illuminate\Http\Request;
 
-class AdminCitiesController extends Controller
+class AdminSubcategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class AdminCitiesController extends Controller
     public function index()
     {
         //
-        $cities = City::all();
-        return view('admin.cities.index', compact('cities'));
+        $subcategories = Subcategory::all();
+        return view('admin.subcategories.index', compact('subcategories'));
     }
 
     /**
@@ -27,8 +27,8 @@ class AdminCitiesController extends Controller
     public function create()
     {
         //
-        $countries = Country::pluck('name','id')->all();
-        return view('admin.cities.create',compact('countries'));
+        $categories = Category::pluck('name','id')->all();
+        return view('admin.subcategories.create',compact('categories'));
     }
 
     /**
@@ -39,10 +39,10 @@ class AdminCitiesController extends Controller
      */
     public function store(Request $request)
     {
-        $country = Country::firstOrCreate(['name'=> $request->get('country_name') ]);
-        City::create(['name'=>$request->get('name'),'postal_code'=>$request->get('postal_code'),'country_id'=>$country->id]);
+        $category = Category::firstOrCreate(['name'=> $request->get('category_name') ]);
+        Subcategory::create(['name'=>$request->get('name'),'category_id'=>$category->id]);
 
-        return redirect('/admin/cities');
+        return redirect('/admin/subcategories');
 
     }
 
@@ -65,9 +65,9 @@ class AdminCitiesController extends Controller
      */
     public function edit($id)
     {
-        $city= City::findOrFail($id);
-        $countries = Country::pluck('name', 'id')->all();
-        return view('admin.cities.edit', compact('city', 'countries'));
+        $subcategory= Subcategory::findOrFail($id);
+        $categories = Category::pluck('name', 'id')->all();
+        return view('admin.subcategories.edit', compact('categories', 'subcategory'));
     }
 
     /**
@@ -79,11 +79,10 @@ class AdminCitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $city = City::findOrFail($id);
-        $country = Country::firstOrCreate(['name' => request('country_name')]);
-        $city->update(['name'=>$request->get('name'),'postal_code'=>$request->get('postal_code'),'country_id'=>$country->id]);
-        return redirect('/admin/cities');
+        $subcategory = Subcategory::findOrFail($id);
+        $category = Category::firstOrCreate(['name' => request('category_name')]);
+        $subcategory->update(['name'=>$request->get('name'),'category_id'=>$category->id]);
+        return redirect('/admin/subcategories');
 
     }
 
@@ -95,8 +94,8 @@ class AdminCitiesController extends Controller
      */
     public function destroy($id)
     {
-        $city = City::findOrFail($id);//record uit database halen
-        $city->delete();
-        return redirect('/admin/cities');
+        $subcategory = Subcategory::findOrFail($id);//record uit database halen
+        $subcategory->delete();
+        return redirect('/admin/subcategories');
     }
 }

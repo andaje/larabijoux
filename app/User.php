@@ -48,6 +48,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Address');
     }
+    public function order()
+    {
+        return $this->hasMany('App\Order');
+    }
 
 
     public function isAdmin()

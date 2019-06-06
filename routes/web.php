@@ -16,6 +16,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,10 +32,12 @@ Route::group(['middleware'=>'admin'],function(){
         Route::get('/home', 'HomeController@index')->name('home');
         Route::resource('users', "AdminUsersController");
         Route::get('/','HomeController@index');
-            //Route::get('barcode', 'HomeController@barcode');
         Route::resource('addresses', "AdminAddressesController");
         Route::resource('countries', "AdminCountriesController");
         Route::resource('cities', "AdminCitiesController");
+        Route::resource('categories', "AdminCategoriesController");
+        Route::resource('subcategories', "AdminSubcategoriesController");
+        Route::resource('products', "AdminProductsController");
 
     });
 });

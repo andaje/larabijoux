@@ -26,8 +26,5 @@ class HomeController extends Controller
         return view('admin.index');
     }
 
-    public function barcode()
-    {
-        return view('barcode');
-    }
+
 }
