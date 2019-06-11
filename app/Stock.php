@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stock extends Model
 {
-    protected $fillable = ['product_id'];
+    protected $fillable = ['product_id','quantity'];
 
 
     public function product()
@@ -14,10 +14,8 @@ class Stock extends Model
         return $this->belongsTo('App\Product');
     }
 
-    public function order()
-    {
-        return $this->belongsToMany('App\Order');
-    }
+
+
 
 
 

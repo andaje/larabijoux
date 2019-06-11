@@ -20,4 +20,8 @@ class Product extends Model
     public function stock(){
         return $this->hasMany('App\Stock');
     }
+    public function order(){
+        return $this->belongsToMany('App\Order');
+    }
+
 }

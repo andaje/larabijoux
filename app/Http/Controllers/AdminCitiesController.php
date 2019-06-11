@@ -14,7 +14,6 @@ class AdminCitiesController extends Controller
      */
     public function index()
     {
-        //
         $cities = City::all();
         return view('admin.cities.index', compact('cities'));
     }
@@ -26,7 +25,6 @@ class AdminCitiesController extends Controller
      */
     public function create()
     {
-        //
         $countries = Country::pluck('name','id')->all();
         return view('admin.cities.create',compact('countries'));
     }
@@ -79,7 +77,6 @@ class AdminCitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $city = City::findOrFail($id);
         $country = Country::firstOrCreate(['name' => request('country_name')]);
         $city->update(['name'=>$request->get('name'),'postal_code'=>$request->get('postal_code'),'country_id'=>$country->id]);

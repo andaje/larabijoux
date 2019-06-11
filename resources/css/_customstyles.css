@@ -1,0 +1,49 @@
+/***DIT IS MIJN EIGEN CSS BESTAND**/
+/**MOBILE FIRST**/
+.logo {
+  font-size: 2rem;
+  font-family: 'Great Vibes', cursive; }
+
+.navbar {
+  opacity: 5;
+  background-color: white; }
+
+.flo {
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%); }
+
+.carousel-indicators li {
+  background: #0b2e13; }
+
+.carousel-indicators li.active {
+  background: #005cbf; }
+
+/**MEDIAQUERIES (ALLES WAT GROTER IS DAN MOBILE
+@include media-breakpoint-up(sm) {
+
+}
+@include media-breakpoint-up(md) {
+  main {
+    margin-top: 150px;
+  }
+
+  .logo {
+    font-size: 4rem;
+  }
+
+  .myfixedtop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  }
+
+}
+
+@include media-breakpoint-up(lg) {  }
+
+@include media-breakpoint-up(xl) {  }
+
+**/

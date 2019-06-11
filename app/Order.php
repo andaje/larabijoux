@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = ['user_id'];
+    protected $fillable = ['user_id', 'quantity','order_nr', 'issue_date', 'status'];
 
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function stock()
+    public function product()
     {
-        return $this->belongsToMany('App\Stock');
+        return $this->belongsToMany('App\Order');
     }
 }

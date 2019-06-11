@@ -38,6 +38,8 @@ Route::group(['middleware'=>'admin'],function(){
         Route::resource('categories', "AdminCategoriesController");
         Route::resource('subcategories', "AdminSubcategoriesController");
         Route::resource('products', "AdminProductsController");
+        Route::resource('stocks', "AdminStocksController");
+        Route::resource('orders', "AdminOrdersController");
 
     });
 });
