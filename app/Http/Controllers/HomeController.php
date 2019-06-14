@@ -11,26 +11,10 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    var $categories;
-    var $products;
-    var $title;
-    var $description;
 
-    public function __construct()
-    {
-        //$this->middleware('auth');
-        $this->categories = Category::all(array('name'));
-        $this->products = Product::all();
-    }
 
-     public function index()
-    {
-        $categories = Category::all();
-        $products = Product::orderBy('id','desc')->paginate(4);
-        return view('home2', compact('categories', 'products'));
-    }
 
-    public function products(){
+    /*public function products(){
         return view('products',array('title' => 'Products listing', 'description'=>'lorem ipsum', 'page'=>'products',
              'categories' => $this->categories, 'products'=>$this->products ));
     }
@@ -43,6 +27,6 @@ class HomeController extends Controller
     public function product_categories($name){
         return view('products',array('title' => 'Welcome', 'description'=>'lorem ipsum', 'page'=>'products',
              'categories' => $this->categories, 'products'=>$this->products ));
-    }
+    }*/
 
 }

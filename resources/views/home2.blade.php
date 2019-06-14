@@ -1,9 +1,6 @@
-@extends('layouts.app')
-
+@extends('layouts.layout')
 @section('content')
-    @include('includes.head')
-    @include('includes.header')
-<main>
+    <main>
     <section >
         <div id="carouselExampleControls" class="carousel slide py-2" data-ride="carousel">
             <div class="carousel-inner">
@@ -81,5 +78,5 @@
 
     </section>
 </main>
-@include('includes.footer')
+
 @endsection

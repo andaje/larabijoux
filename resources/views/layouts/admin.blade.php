@@ -12,7 +12,8 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('../public/css/bootstrap.min.css')}}" rel="stylesheet">
+
 
     <!-- MetisMenu CSS -->
     <link href="{{asset('css/metisMenu.min.css')}}" rel="stylesheet">
@@ -23,13 +24,13 @@
     <!-- Morris Charts CSS -->
     <link href="{{asset('css/morris.css')}}" rel="stylesheet">
 
+
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     @yield('styles')
 </head>
-
 <body>
 
 <div id="wrapper">
@@ -288,8 +289,6 @@
                     <li>
                         <a href=""><i class="fa fa-dashboard fa-fw"></i> Frontend</a>
                     </li>
-
-
                     <li>
                         <a href="#"><i class="fa fa-user"></i> Users<span
                                 class="fa arrow"></span></a>
@@ -415,64 +414,6 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    {{--<li>
-                                <a href="{{route('barcodes.create')}}">Create Barcode</a>
-                            </li>--}}
-                   {{-- <li>
-                        <a href="#"><i class="fa fa-comment"></i> Comments<span
-                                class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{route('comments.index')}}">All Comments</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-arrow-circle-down"></i> Categories<span
-                                class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{route('categories.index')}}">All Categories</a>
-                            </li>
-                            <li>
-                                <a href="{{route('categories.create')}}">Create Category</a>
-                            </li>
-
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-arrow-circle-up"></i> Media<span
-                                class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{route('medias.index')}}">All Media</a>
-                            </li>
-                            <li>
-                                <a href="{{route('medias.create')}}">Upload Media</a>
-                            </li>
-
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
---}}
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

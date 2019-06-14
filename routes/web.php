@@ -16,22 +16,23 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+//Route::get('/', function () {
+   // return view('welcome');
+//});
 
 
-
+//Route::get('/','HomeController@index');
+Route::get('/', 'FrontController@index');
+Route::get('catergories','FrontController@categories');
+Route::get('/admin','DashboardController@index');
 
 Auth::routes();
 Route::group(['middleware'=>'admin'],function(){
     Route::prefix('admin')->group(function () {
-        Route::get('/home', 'HomeController@index')->name('home');
+       // Route::get('/home', 'HomeController@index')->name('home');
         Route::resource('users', "AdminUsersController");
-        Route::get('/','HomeController@index');
+        Route::resource('users', "AdminUsersController");
         Route::resource('addresses', "AdminAddressesController");
         Route::resource('countries', "AdminCountriesController");
         Route::resource('cities', "AdminCitiesController");
@@ -41,8 +42,11 @@ Route::group(['middleware'=>'admin'],function(){
         Route::resource('stocks', "AdminStocksController");
         Route::resource('orders', "AdminOrdersController");
 
-    });
+
+        });
 });
+
+
 
 
 Route::get('user/role/create', function(){
