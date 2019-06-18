@@ -52,17 +52,19 @@ class FrontController extends Controller
         $products = Product::where('category_id', $category->id)->get() ;
         //dd($cat_prod);
 
-       return view('show_products', compact('category', 'cat_prod', 'cat','products'));
+       return view('show_products', compact('category', 'cat','products'));
 
     }
 
     public function product_details($id){
+        $cat = Category :: all();
+        $category = Category ::find($id);
         $product = Product:: all();
         $products = Product :: find($id);
 
         //dd($products);
 
-        return view('product_details', compact('products','product'));
+        return view('product_details', compact('products','product', 'cat', 'category'));
     }
 
     public function cart(){
