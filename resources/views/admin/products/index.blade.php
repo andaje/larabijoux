@@ -4,9 +4,9 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Category</th>
-
+            <th scope="col">Photo</th>
             <th scope="col">Name</th>
+            <th scope="col">Category</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
             <th scope="col">Price</th>
@@ -18,15 +18,12 @@
         @if ($products)
             @foreach($products  as $product)
                 <tr>
-                    @foreach($product->category as $cat)
-                        <tr>
-                            <td>{{$cat->name}}</td>
-                        </tr>
-                    @endforeach
+
                     <td>
                         <img height="50" src="{{$product->photo ? asset($product->photo->file) :'http://place-hold.it/400x400'}}" alt="">
                     </td>
                     <td><a href="{{route('products.edit', $product->id)}}">{{$product->name}}</a></td>
+                    <td>{{$product->category->name}}</td>
                     <td>{{$product->title}}</td>
                     <td>{{$product->description}}</td>
                     <td>{{$product->price}}</td>

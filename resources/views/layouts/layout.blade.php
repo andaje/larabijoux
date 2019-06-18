@@ -23,25 +23,23 @@
         <div class="collapse navbar-collapse text-center mt-1" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{route('/')}} ">Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="categories">Category</a>
+                    <a class="nav-link" href="{{route('show_products')}}">Store</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contact.html">Contact</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="category.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Store
+                    <a class="nav-link dropdown-toggle" href="{{route('show_products')}}" target="_blank" data-target="{{route('show_products')}}"id="dropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Category
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Earrings</a>
-                        <ul>
-                            <li><a class="text-muted" href='long_earrings_page.html'>Long Earrings</a></li>
-                            <li><a class="text-muted" href='small_earrings_page.html'>Small Earrings</a></li>
-                        </ul>
+                        <a class="dropdown-item" href=" "> Long Earrings</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#"> Short Earrings</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Necklace</a>
                         <div class="dropdown-divider"></div>
@@ -81,6 +79,7 @@
         </div>
 
     </div>
+
 </nav>
 </header>
 @yield('content')

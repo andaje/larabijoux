@@ -18,16 +18,24 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('/', function () {
-   // return view('welcome');
+  // return view('welcome');
 //});
 
 
 //Route::get('/','HomeController@index');
-Route::get('/', 'FrontController@index');
+Route::get('/', 'FrontController@index')->name('/');
 Route::get('catergories','FrontController@categories');
+Route::get('show_products','FrontController@show_products')->name('show_products');
+Route::get('show_products/{id}','FrontController@cat_prod')->name('cat_products');
+Route::get('product_details/{id}','FrontController@product_details')->name('product_details');
 Route::get('/admin','DashboardController@index');
+Route::get('stripe', 'StripePaymentController@stripe');
+Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');
+
+//Route::post('/stripe', 'AankopenController@store');
 
 Auth::routes();
+
 Route::group(['middleware'=>'admin'],function(){
     Route::prefix('admin')->group(function () {
        // Route::get('/home', 'HomeController@index')->name('home');
@@ -41,6 +49,8 @@ Route::group(['middleware'=>'admin'],function(){
         Route::resource('products', "AdminProductsController");
         Route::resource('stocks', "AdminStocksController");
         Route::resource('orders', "AdminOrdersController");
+
+
 
 
         });

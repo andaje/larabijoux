@@ -9,9 +9,13 @@ class Photo extends Model
     //
     protected $uploads = '/images/';
     protected $fillable = [
-        'file'
+        'file', 'product_id'
     ];
     public function getFileAttribute($photo){
         return $this->uploads. $photo;
+    }
+
+    public function product(){
+        return $this->belongsTo('App\Photo');
     }
 }

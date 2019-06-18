@@ -8,20 +8,20 @@ class Product extends Model
 {
     protected $primaryKey = 'id';
     protected $table = 'products';
-    protected $fillable=['photo_id','name','title','description','price'];
+    protected $fillable=['photo_id','category_id','name','title','description','price'];
 
     public function category(){
-        return $this->belongsToMany('App\Category');
+        return $this->belongsTo('App\Category');
     }
     public function photo(){
-        return $this->belongsTo('App\Photo');
+        return $this->hasMany('App\Photo');
     }
 
     public function stock(){
         return $this->hasMany('App\Stock');
     }
     public function order(){
-        return $this->belongsToMany('App\Order');
+        return $this->belongsToMany('App\Order', 'order_product', 'product_id', 'order_id');
     }
 
 }

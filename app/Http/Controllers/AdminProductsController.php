@@ -53,15 +53,18 @@ class AdminProductsController extends Controller
             $photo = Photo::create(['file'=>$name]);//in de tabel photo id en naam aanmaken
             $input['photo_id'] = $photo->id; //
         }
+
         $product = new Product();
+        $category = Category::firstOrCreate(['name' => request('category_name')]);
         $product ->photo_id = $photo->id;
        // dd($photo->id);
         $product ->name = $request->input('name');
         $product ->title = $request->input('title');
         $product ->description = $request->input('description');
         $product ->price = $request->input('price');
+        $product ->category_id = $category->id;
         $product ->save();
-        $product->category()->sync($request->input('categories',[]));
+
         return redirect('/admin/products');
     }
     /**
@@ -113,8 +116,13 @@ class AdminProductsController extends Controller
             $photo = Photo::create(['file'=>$name]);//in de tabel photo id en naam aanmaken
             $input['photo_id'] = $photo->id; //
         }
+        $category = Category::firstOrCreate(['name' => request('category_name')]);
         $product->update($input);
-        $product->category()->sync($request->input('categories',[]));
+        $product->update(['name'=>$request->get('name'),'title'=>$request->get('title'),
+            'description'=>$request->get('description'),
+            'price'=>$request->get('price'),
+            'category_id'=>$category->id]);
+
         return redirect('/admin/products');
     }
 

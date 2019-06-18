@@ -11,12 +11,14 @@
         "php": "^7.1.3",
         "ext-gd": "*",
         "barryvdh/laravel-ide-helper": "^2.6",
+        "bumbummen99/shoppingcart": "^2.8",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8",
         "milon/barcode": "^5.3",
-        "peal/laravel-barcode-generator": "dev-master"
+        "peal/laravel-barcode-generator": "dev-master",
+        "stripe/stripe-php": "^6.37"
     },
 
 

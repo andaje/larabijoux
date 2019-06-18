@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\OrderProduct;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminOrdersController extends Controller
@@ -13,7 +15,8 @@ class AdminOrdersController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        return view('admin.orders.index', compact('orders'));
     }
 
     /**
@@ -23,7 +26,8 @@ class AdminOrdersController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::pluck('email','id')->get();
+        return view('admin.orders.create',compact('users'));
     }
 
     /**
@@ -32,12 +36,55 @@ class AdminOrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // Insert into orders table
     public function store(Request $request)
     {
-        //
+        $user = User::firstOrCreate(['email'=> $request->get('user_email') ]);
+        $order = Order::create([
+            'user_id ' => auth()->user() ? auth()->user()->id : null,
+            'user_id'=>$user->id,
+            /*'billing_email' => $request->get('user_email',
+            'billing_first_name' => $request->first_name,
+            'billing_last_name' => $request->last_name,
+            'billing_address' => $request->address,
+            'billing_city' => $request->city,
+            'billing_postal_code' => $request->postal_code,
+            'billing_country' => $request->country,
+            'billing_name_on_cart' => $request->name_on_card,
+            'billing_subtotal' => $this->getNumbers()->get('newSubtotal'),
+            'billing_total' => $this->getNumbers()->get('newTotal'),*/
+
+        ]);
+
+        //$order->product()->sync($request->input('product',[]));
+        // Insert into order_product table
+
+        foreach (Cart::content() as $item) {
+            OrderProduct::create([
+                'order_id' => $order->id,
+                'product_id' => $item->model->id,
+                'quantity' => $item->qty
+            ]);
+            return redirect('/admin/orders');
+
+        }
     }
 
-    /**
+
+    private function getNumbers()
+    {
+        $newSubtotal = Cart:: subtotal();
+        $newTotal = $newSubtotal;
+
+        return collect([
+            'newSubtotal' => $newSubtotal,
+            'newTotal' => $newTotal
+
+        ]);
+
+    }
+
+        /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -56,7 +103,10 @@ class AdminOrdersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order= Order::findOrFail($id);
+        $users = User::pluck('email', 'id')->get();
+        return view('admin.orders.edit', compact('order', 'users'));
+
     }
 
     /**
@@ -68,7 +118,11 @@ class AdminOrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $user = User::firstOrCreate(['email' => request('user_email')]);
+        $order->update(['user_id'=>$user->id]);
+        return redirect('/admin/orders');
+
     }
 
     /**
@@ -79,6 +133,9 @@ class AdminOrdersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Order::findOrFail($id);//record uit database halen
+        $order->delete();
+        return redirect('/admin/orders');
+
     }
 }

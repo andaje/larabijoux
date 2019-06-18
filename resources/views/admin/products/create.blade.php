@@ -24,10 +24,8 @@
         {!! Form::text('price' ,null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        @foreach ($categories as $category)
-        {{ Form::label('categories', $category->name) }}
-        {{ Form::checkbox('categories[]', $category->id) }}
-        @endforeach
+        {{ Form::label('category_name', 'Category') }}
+        {!! Form::text('category_name' ,null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::submit('Create Product', ['class'=>'btn btn-primary']) !!}

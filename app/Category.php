@@ -10,13 +10,10 @@ class Category extends Model
     protected $table = 'categories';
     protected $fillable = ['name'];
 
-    public function subcategory()
-    {
-        return $this->hasMany('App\Subcategory');
-    }
+
 
     public function products()
     {
-        return $this->belongsToMany('App\Product');
+        return $this->hasMany('App\Product');
     }
 }

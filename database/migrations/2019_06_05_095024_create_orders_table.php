@@ -15,11 +15,13 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id')->index()->unsigned();
-            $table->integer('order_nr')->unsigned();
-            $table->integer('quantity')->unsigned();
-            $table->date('issue_date');
-            $table->boolean('status');
+            $table->integer('user_id')->index()->unsigned()->nullable();
+            //$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');
+            $table->string('billing_email');
+            $table->string('billing_name_on_card');
+            $table->decimal('billing_subtotal');
+            $table->decimal('billing_total');
+            $table->string('payment_gateway')->default('stripe');
             $table->timestamps();
         });
     }
