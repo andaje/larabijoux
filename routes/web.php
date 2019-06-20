@@ -16,6 +16,8 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Route;
+use Gloudemans\Shoppingcart\Cart;
+use Illuminate\Http\Request;
 
 //Route::get('/', function () {
   // return view('welcome');
@@ -26,15 +28,30 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'FrontController@index')->name('/');
 Route::get('catergories','FrontController@categories');
 Route::get('show_products','FrontController@show_products')->name('show_products');
+//Route::get('shopping_cart','FrontController@cart')->name('shopping_cart');
+
+Route::get('checkout','FrontController@checkout')->name('checkout');
 Route::get('show_products/{id}','FrontController@cat_prod')->name('cat_products');
 Route::get('product_details/{id}','FrontController@product_details')->name('product_details');
 Route::get('/admin','DashboardController@index');
+
+
+
+
+Route::get('/checkout', 'FrontController@checkout');
+
+
+Route::get('/cart', 'FrontController@cart')->name('shopping_cart');
+Route::post('/cart','FrontController@cart')->name('shopping_cart');
+Route::get('/clear-cart', 'FrontController@clear_cart');
+Route::get('/search/{query}','FrontController@search');
+
 Route::get('stripe', 'StripePaymentController@stripe');
 Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');
-
-//Route::post('/stripe', 'AankopenController@store');
+//Route::post('larabijoux/public/aankopen', 'AankopenController@store');
 
 Auth::routes();
+
 
 Route::group(['middleware'=>'admin'],function(){
     Route::prefix('admin')->group(function () {

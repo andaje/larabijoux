@@ -16,6 +16,7 @@
 
         <div class="d-flex justify-content-around">
                 @foreach($products as $product)
+
                         <div class="">
                             <a class="p-3" href="{{route('product_details', $product->id)}}"><img src="{{asset('' . $product->photo->file)}}" width="250"  alt=""></a>
                             <div class="">

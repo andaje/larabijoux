@@ -10,7 +10,7 @@ class StripePaymentController extends Controller
 {
     public function stripe()
     {
-        return view('stripe');
+        return view('checkout');
     }
 
     /**
@@ -30,6 +30,6 @@ class StripePaymentController extends Controller
 
         Session::flash('success', 'Payment successful!');
 
-        return back();
+        return view('checkout');
     }
 }

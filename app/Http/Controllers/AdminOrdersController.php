@@ -43,16 +43,9 @@ class AdminOrdersController extends Controller
         $order = Order::create([
             'user_id ' => auth()->user() ? auth()->user()->id : null,
             'user_id'=>$user->id,
-            /*'billing_email' => $request->get('user_email',
-            'billing_first_name' => $request->first_name,
-            'billing_last_name' => $request->last_name,
-            'billing_address' => $request->address,
-            'billing_city' => $request->city,
-            'billing_postal_code' => $request->postal_code,
-            'billing_country' => $request->country,
-            'billing_name_on_cart' => $request->name_on_card,
-            'billing_subtotal' => $this->getNumbers()->get('newSubtotal'),
-            'billing_total' => $this->getNumbers()->get('newTotal'),*/
+            'user_id'=>$user->first_name,
+            'user_id'=>$user->last_name,
+
 
         ]);
 

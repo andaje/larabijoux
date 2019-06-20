@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Category;
-use App\Order;
 use App\Product;
-use Illuminate\Http\Request;
+//use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests;
+use Cart;
+
+
 
 class FrontController extends Controller
 {
+
     var $categories;
     var $products;
     var $title;
     var $description;
-    var $value;
+
 
     public function __construct()
     {
@@ -25,10 +33,9 @@ class FrontController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $products = Product::orderBy('id','desc')->paginate(6);
+        $products = Product::orderBy('id', 'desc')->paginate(6);
         return view('home2', compact('categories', 'products'));
     }
-
 
 
     public function categories()
@@ -39,33 +46,37 @@ class FrontController extends Controller
 
     public function show_products()
     {
-        $cat = Category :: all();
+        $cat = Category:: all();
         $products = Product::all();
-        $category = Category :: pluck('name') ;
+        $category = Category:: pluck('name');
         //dd($products);
-        return view('show_products' , compact('category', 'products', 'cat'));
+        return view('show_products', compact('category', 'products', 'cat'));
     }
-    public function cat_prod($id){
-        $cat = Category :: all();
+
+    public function cat_prod($id)
+    {
+        $cat = Category:: all();
         //$products = Product::all();
-        $category = Category ::find($id);
-        $products = Product::where('category_id', $category->id)->get() ;
+        $category = Category::find($id);
+        $products = Product::where('category_id', $category->id)->get();
         //dd($cat_prod);
 
-       return view('show_products', compact('category', 'cat','products'));
+        return view('show_products', compact('category', 'cat', 'products'));
 
     }
 
-    public function product_details($id){
-        $cat = Category :: all();
+    public function product_details($id)
+    {
+        $cat = Category:: all();
         $category = Category ::find($id);
-        $product = Product:: all();
-        $products = Product :: find($id);
+        $prod = Product:: all();
+        $products = Product::where('id', $id)->get();
+        //dd($products );
 
-        //dd($products);
-
-        return view('product_details', compact('products','product', 'cat', 'category'));
+        return view('product_details', compact('products', 'cat','category', 'prod'));
     }
+
+
 
     public function cart(){
         if(Request::isMethod('post')){
@@ -92,22 +103,25 @@ class FrontController extends Controller
             Cart::remove($item->rowId);
         }
         //return view('cart',array('cart' => $cart, 'title' => 'Welcome', 'description' => 'lorem','page'=>'home'));
-        $gateway = new Braintree\Gateway([
-            'environment' => config('services.braintree.environment'),
-            'merchantId' => config('services.braintree.merchantId'),
-            'publicKey' => config('services.braintree.publicKey'),
-            'privateKey' => config('services.braintree.privateKey')
-        ]);
-        $token = $gateway->ClientToken()->generate();
+
         return view('cart',compact('token','cart')
         );
     }
-    public function clear_cart()
-    {
+    public function clear_cart(){
         Cart::destroy();
         return Redirect::away('cart');
+    }
+    public function search($query){
+        return view('products',array('title' => 'Welcome', 'description'=>'lorem ipsum', 'page'=>'products'));
+    }
 
 
+
+    public function checkout()
+    {
+
+
+        return view('checkout');
     }
 
 
@@ -119,3 +133,16 @@ class FrontController extends Controller
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
