@@ -29,6 +29,7 @@ class UsersRequest extends FormRequest
             'last_name'=>'required|string',
             'email'=>'required|email|unique:users',
             'role_id'=>'required',
+            'address_id'=>'required',
             'is_active'=>'required',
             'password'=>'required'
         ];
@@ -39,6 +40,7 @@ class UsersRequest extends FormRequest
             'first_name.required'=>'First Name is required',
             'last_name.required'=>'Last Name is required',
             'password.required' =>'Password is required',
+            'address_id.required'=>'Address is required',
             'role_id.required'=>'Role is required'
         ];
     }

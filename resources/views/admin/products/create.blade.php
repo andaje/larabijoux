@@ -24,8 +24,8 @@
         {!! Form::text('price' ,null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        {{ Form::label('category_name', 'Category') }}
-        {!! Form::text('category_name' ,null, ['class'=>'form-control']) !!}
+        {!! Form::label('category_id', 'Category:') !!}
+        {!! Form::select('category_id', [''=>'Choose options'] + $categories, null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::submit('Create Product', ['class'=>'btn btn-primary']) !!}

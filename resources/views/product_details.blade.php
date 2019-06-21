@@ -62,7 +62,7 @@
                     <h6 class="text-uppercase my-2"><b>{{$product->name}}</b></h6>
                     <p>Price : {{$product->price}}</p>
                     <p class="">Status :</p>
-                    <p class="">Product Code :</p>
+
                     <div class="d-flex mb-1">
                         <p class="mr-1">Colors :</p>
                         <div>
@@ -76,24 +76,23 @@
                     </div>
                     <p class="text-uppercase my-3"><b>Description</b></p>
                     <p>Crystal fancy stone, chaton & pearl, in tombak silverplatted casing soldered on sterling earpin & earpost.</p>
-                    <input class="my-3 " type="number" name="quantity" min="1" max="1000">
+
                     <div class="d-flex my-3 ">
-                        <a class=" btn btnAdd mr-5 text-center"  role="button" href=""> cart</a>
                         <form action="{{url('cart')}}" method="post">
                             <input type="hidden" name="product_id" value="{{$product->id}}">
-                            <input type="hidden" name="_token" value="{{csrf_token()}}"></input>
-                            <button type="submit" class="btn btn-default cart">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                            <button type="submit" class="btn btnAdd  mr-5 text-center cart" style="width: 160px";
+                            >
                                 <i class="fa fa-shopping-cart"></i>
                                 Add to cart
                             </button>
                         </form>
                         <div class="d-flex flex-column  ">
-
                             <a class="text-muted text-left" href="">Add to Favorites</a>
                             <a class="text-muted text-left" href="">Add to Wishlist</a>
                         </div>
                     </div>
-                    <div class="d-flex mt-5 ml-1">
+                    <div class="d-flex mt-1 ml-1">
                         <i class="fas fa-star mr-1 coli"></i>
                         <i class="fas fa-star mr-1 coli"></i>
                         <i class="fas fa-star mr-1 coli"></i>

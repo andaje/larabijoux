@@ -12,16 +12,16 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('city_name', 'City:') !!}
-        {!! Form::text('city_name',null, ['class'=>'form-control']) !!}
+        {!! Form::label('city_id', 'City:') !!}
+        {!! Form::select('city_id', [''=>'Choose options'] + $cities, null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('city_postal_code', 'Postal Code:') !!}
-        {!! Form::text('city_postal_code' ,null, ['class'=>'form-control']) !!}
+        {!! Form::label('city_id', 'Postal Code:') !!}
+        {!! Form::select('city_id', [''=>'Choose options'] + $cit, null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('country_name', 'Country:') !!}
-        {!! Form::text('country_name' ,null, ['class'=>'form-control']) !!}
+        {!! Form::label('coubtry_id', 'Country:') !!}
+        {!! Form::select('country_id', [''=>'Choose options'] + $countries, null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::submit('Create Address', ['class'=>'btn btn-primary']) !!}

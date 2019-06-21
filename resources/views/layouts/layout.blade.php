@@ -84,7 +84,7 @@
 </header>
 @yield('content')
 <footer>
-    <div class="row mt-4  bacg">
+    <div class="row mt-1  bacg">
         <div class=" col-12 col-md-4 text-center lin">
             <h5 class="mt-2  dim">About</h5>
             <ul class="list-unstyled text-small">
@@ -114,11 +114,11 @@
             </ul>
         </div>
     </div>
-    <div class="mt-3 d-flex flex-row justify-content-center">
-        <img class="mb-2 mr-2" src="assets/images/logo.png" alt="" width="24" height="24">
-        <small class="d-block mb-3 text-muted">© 2018-2019</small>
+    <div class="mt-2 d-flex flex-row justify-content-center">
+        <img class="mb-2 mr-2" src="assets/images/logo.png" alt="" width="20" height="20">
+        <small class="d-block mb-1 text-muted">© 2018-2019</small>
     </div>
-    <div class="btn-back-to-top bg0-hov" id="myBtn" style="display: flex;">
+    <div class="btn-back-to-top bg-hov" id="myBtn" style="display: flex;">
 		<span class="symbol-btn-back-to-top">
 			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
 		</span>

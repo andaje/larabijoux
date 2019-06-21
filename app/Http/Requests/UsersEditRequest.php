@@ -29,6 +29,7 @@ class UsersEditRequest extends FormRequest
             'last_name'=>'required|string',
             'email'=>'required',
             'role_id'=>'required',
+            'address_id'=>'required'
 
         ];
     }
@@ -37,7 +38,8 @@ class UsersEditRequest extends FormRequest
             'email.required'=>'Email is required',
             'first_name.required'=>'First Name is required',
             'last_name.required'=>'Last Name is required',
-            'role_id.required'=>'Role is required'
+            'role_id.required'=>'Role is required',
+            'address.id.required'=>'Address is required'
         ];
     }
 }

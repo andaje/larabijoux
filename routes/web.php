@@ -30,7 +30,7 @@ Route::get('catergories','FrontController@categories');
 Route::get('show_products','FrontController@show_products')->name('show_products');
 //Route::get('shopping_cart','FrontController@cart')->name('shopping_cart');
 
-Route::get('checkout','FrontController@checkout')->name('checkout');
+
 Route::get('show_products/{id}','FrontController@cat_prod')->name('cat_products');
 Route::get('product_details/{id}','FrontController@product_details')->name('product_details');
 Route::get('/admin','DashboardController@index');
@@ -38,7 +38,7 @@ Route::get('/admin','DashboardController@index');
 
 
 
-Route::get('/checkout', 'FrontController@checkout');
+Route::get('/checkout', 'FrontController@checkout')->name('checkout');
 
 
 Route::get('/cart', 'FrontController@cart')->name('shopping_cart');

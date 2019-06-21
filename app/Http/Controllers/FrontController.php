@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use Cart;
+use App\City;
+use App\Country;
+use App\Address;
 
 
 
@@ -115,14 +118,36 @@ class FrontController extends Controller
         return view('products',array('title' => 'Welcome', 'description'=>'lorem ipsum', 'page'=>'products'));
     }
 
+    public function checkout(){
 
 
-    public function checkout()
-    {
 
-
-        return view('checkout');
+        if(Request::isMethod('post')){
+            $product_id = Request::get('product_id');
+            $product = Product::find($product_id);
+            Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price));
+        }
+        $cart = Cart::content();
+        //increment
+        if (Request::get('product_id') && (Request::get('increment')) == 1) {
+            $item = Cart::search(
+                function($key, $value) {
+                    return $key->id == Request::get('product_id');
+                })->first();
+            Cart::update($item->rowId, $item->qty + 1);
+        }
+        if (Request::get('product_id') && (Request::get('decrease')) == 1) {
+            $item = Cart::search(function($key, $value) { return $key->id == Request::get('product_id'); })->first();
+            Cart::update($item->rowId, $item->qty - 1);
+        }
+        return view('checkout', compact ('cart', 'token','cities', 'cit','countries', 'addresses'));
     }
+
+   // public function stripe(){
+       // return view('stripe');
+    //}
+
+
 
 
 

@@ -29,12 +29,12 @@ class AdminAddressesController extends Controller
      */
     public function create()
     {
-        //
 
-        $cities = City::pluck('name','postal_code','id')->all();
+        $cit = City::pluck('postal_code', 'id')->all();
+        $cities = City::pluck('name','id')->all();
         $countries = Country::pluck('name','id')->all();
 
-        return view('admin.addresses.create',compact('cities', 'countries'));
+        return view('admin.addresses.create',compact('cities', 'countries','cit'));
 
     }
 
@@ -46,10 +46,7 @@ class AdminAddressesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
-
-       /* $city = City::firstOrCreate(['name'=> $request->get('city_name'),'postal_code'=> $request->get('city_postal_code')]);
+        /* $city = City::firstOrCreate(['name'=> $request->get('city_name'),'postal_code'=> $request->get('city_postal_code')]);
         Address::create(['street'=>$request->get('street'),'city_id'=>$city->id]);*/
 
        $country = Country::firstOrCreate(['name' => request('country_name')]);

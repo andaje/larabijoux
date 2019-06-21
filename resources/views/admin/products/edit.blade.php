@@ -25,10 +25,8 @@
         {!! Form::text('price' ,null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        @foreach ($categories as $category)
-            {{ Form::label('categories', $category->name) }}
-            {{ Form::text('categories[]', $category->id) }}
-        @endforeach
+        {!! Form::label('category_id', 'Category:') !!}
+        {!! Form::select('category_id', [''=>'Choose options'] + $categories, null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::submit('Update Product', ['class'=>'btn btn-primary']) !!}

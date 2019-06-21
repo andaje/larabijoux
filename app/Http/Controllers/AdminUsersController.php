@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
 use App\Http\Requests\UsersEditRequest;
 use App\Http\Requests\UsersRequest;
-use App\Rent;
 use App\Role;
 use App\User;
+use App\City;
+use App\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -31,8 +33,12 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
+        $countries = Country::pluck('name','id')->all();
+        $cit = City::pluck('postal_code', 'id')->all();
+        $cities = City::pluck('name','id')->all();
+        $addresses = Address::pluck('street','id')->all();
         $roles = Role::pluck('name','id')->all();
-        return view('admin.users.create', compact('roles'));
+        return view('admin.users.create', compact('roles','addresses', 'cities', 'cit', 'countries'));
     }
 
     /**
@@ -50,6 +56,7 @@ class AdminUsersController extends Controller
              'email'=> $request['email'],
              'role_id' => $request['role_id'],
              'is_active'=> $request['is_active'],
+             'address_id'=> $request['address_id'],
              'password' => bcrypt($request['password']),
         ]);
         $input = $request->all();
@@ -86,9 +93,17 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
+        //$users = User::with('podcasts')->get();
         $user = User::findOrFail($id);
         $roles = Role::pluck('name','id')->all();
-        return view('admin.users.edit', compact('user','roles'));
+        $addresses= Address::pluck('street','id')->all();
+        $countries = Country::pluck('name')->all();
+        $cit = City::pluck('postal_code')->all();
+        $cities = City::pluck('name','id')->all();
+
+
+
+        return view('admin.users.edit', compact('user','roles', 'addresses', 'countries','cit', 'cities'));
     }
     /**
      * Update the specified resource in storage.

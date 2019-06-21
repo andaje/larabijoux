@@ -34,7 +34,7 @@ class AdminProductsController extends Controller
      */
     public function create()
     {
-        $categories= Category::all();
+        $categories= Category::pluck('name','id')->all();
         return view('admin.products.create',compact('categories'));
     }
 
@@ -46,6 +46,7 @@ class AdminProductsController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $input = $request->all();//alle velden uit het formulier in $input
         if($file = $request->file('photo_id')){
             $name = time() . $file->getClientOriginalName();//samenstelling bestandsnaam
@@ -55,14 +56,14 @@ class AdminProductsController extends Controller
         }
 
         $product = new Product();
-        $category = Category::firstOrCreate(['name' => request('category_name')]);
+        $category = $request->all()['category_id'];
         $product ->photo_id = $photo->id;
        // dd($photo->id);
         $product ->name = $request->input('name');
         $product ->title = $request->input('title');
         $product ->description = $request->input('description');
         $product ->price = $request->input('price');
-        $product ->category_id = $category->id;
+        $product ->category_id = $category;
         $product ->save();
 
         return redirect('/admin/products');
@@ -87,7 +88,7 @@ class AdminProductsController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);//ophalen uit db
-        $categories = Category::all();
+        $categories = Category::pluck('name', 'id')->all();
         /*$this->data['products'] = $product;
         $this->data['categories'] = Category::all();
         $selectedCategories = $product->category()->get()->toArray();

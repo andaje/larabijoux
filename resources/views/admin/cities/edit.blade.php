@@ -14,8 +14,8 @@
         {!! Form::text('postal_code', null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('country_name', 'Country:') !!}
-        {!! Form::text('country_name',$city->country->name, null, ['class'=>'form-control']) !!}
+        {!! Form::label('country_id', 'Country:') !!}
+        {!! Form::select('country_id', [''=>'Choose options'] + $countries, null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::submit('Update City', ['class'=>'btn btn-primary']) !!}
