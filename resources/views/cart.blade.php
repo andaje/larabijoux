@@ -76,13 +76,7 @@
                                             <input id="nonce" name="payment_method_nonce" type="hidden" />
                                             <button class="btn btn-sm btn-primary" type="submit"><span>Test Transaction</span></button>
                                         </div>
-                                        {{--<label for="amount">
-                                            <span class="input-label">Amount</span>
-                                            <div class="input-wrapper amount-wrapper">
-                                                <input id="amount" name="amount" type="tel" min="1" placeholder="Amount"
-                                                       value="{{Cart::subTotal()}}">
-                                            </div>
-                                        </label>--}}
+
                                         <div class=" col-12 d-flex justify-content-end  lineb">
                                             <h6 class="text-center mr-2"><b>Total</b></h6>
                                             <p class="text-center"><b>€ {{Cart::subTotal()}}</b></p>
@@ -93,76 +87,11 @@
                                     </section>
                         </div>
                         </div>
-                        <div class="col-sm-8">
-                            @if(!Auth::check())
-                                <div class="row">
-                                    <div class="col-12">
-                                        {!! Form::open(['method'=>'POST', 'action'=> 'AdminUsersController@store','files'=>true]) !!}
-                                        <div class="form-group">
-                                            {!! Form::label('first_name', ' First Name:') !!}
-                                            {!! Form::text('first_name', null, ['class'=>'form-control'])!!}
-                                        </div>
-                                        <div class="form-group">
-                                            {!! Form::label('last_name', 'First Name:') !!}
-                                            {!! Form::text('last_name', null, ['class'=>'form-control'])!!}
-                                        </div>
-                                        <div class="form-group">
-                                            {!! Form::label('email', 'Email:') !!}
-                                            {!! Form::email('email', null, ['class'=>'form-control'])!!}
-                                        </div>
 
-                                        <div class="form-group">
-                                            {!! Form::label('password', 'Password:') !!}
-                                            {!! Form::password('password', ['class'=>'form-control'])!!}
-                                        </div>
-
-                                        <div class="form-group">
-                                            {!! Form::submit('Create User', ['class'=>'btn btn-primary']) !!}
-                                        </div>
-
-                                        {!! Form::close() !!}
-                                    </div>
-                                </div>
-                            @else
-                                <div class="row">
-                                    <div class="col-12">
-
-                                        {!! Form::model(Auth::user(), ['method'=>'PATCH', 'action'=> ['AdminUsersController@update', Auth::user()->id],'files'=>true]) !!}
-                                        <div class="form-group">
-                                            {!! Form::label('first_name', 'First Name:') !!}
-                                            {!! Form::text('first_name', null, ['class'=>'form-control'])!!}
-                                        </div>
-                                        <div class="form-group">
-                                            {!! Form::label('last_name', 'Last Name:') !!}
-                                            {!! Form::text('last_name', null, ['class'=>'form-control'])!!}
-                                        </div>
-                                        <div class="form-group">
-                                            {!! Form::label('email', 'Email:') !!}
-                                            {!! Form::email('email', null, ['class'=>'form-control'])!!}
-                                        </div>
-
-                                        <div class="form-group">
-                                            {!! Form::label('password', 'Password:') !!}
-                                            {!! Form::password('password', ['class'=>'form-control'])!!}
-                                        </div>
-
-                                        <div class="form-group">
-                                            {!! Form::submit('Update User', ['class'=>'btn btn-success']) !!}
-                                        </div>
-
-                                        {!! Form::close() !!}
-
-                                    </div>
-                                </div>
-                            @endif
-                        </div>
                     </div>
-                </div>
+
             </section><!--/#do_action-->
-                    </div>
-                </div>
-                </div>
-            </section><!--/#do_action-->
+
     </main>
 
 

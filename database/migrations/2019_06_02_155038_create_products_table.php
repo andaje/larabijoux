@@ -20,7 +20,8 @@ class CreateProductsTable extends Migration
             $table->string('name', 191)->unique();
             $table->string('title', 140);
             $table->string('description', 500);
-            $table->decimal('price');
+            $table->decimal('price')->unsigned();
+            $table->integer('quantity')->unsigned();
             $table->timestamps();
         });
 

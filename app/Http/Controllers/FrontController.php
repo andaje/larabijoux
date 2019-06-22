@@ -5,15 +5,11 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
-//use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use Cart;
-use App\City;
-use App\Country;
-use App\Address;
+
 
 
 
@@ -36,7 +32,7 @@ class FrontController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $products = Product::orderBy('id', 'desc')->paginate(6);
+        $products = Product::orderBy('id', 'desc')->paginate(4);
         return view('home2', compact('categories', 'products'));
     }
 
@@ -67,6 +63,8 @@ class FrontController extends Controller
         return view('show_products', compact('category', 'cat', 'products'));
 
     }
+
+
 
     public function product_details($id)
     {
@@ -143,9 +141,14 @@ class FrontController extends Controller
         return view('checkout', compact ('cart', 'token','cities', 'cit','countries', 'addresses'));
     }
 
-   // public function stripe(){
-       // return view('stripe');
-    //}
+    public function contact(){
+
+        return view('contact');
+    }
+
+
+
+
 
 
 

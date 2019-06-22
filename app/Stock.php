@@ -9,10 +9,10 @@ class Stock extends Model
     protected $fillable = ['product_id','quantity'];
 
 
-    public function product()
+   /* public function product()
     {
         return $this->belongsTo('App\Product');
-    }
+    }*/
 
 
 

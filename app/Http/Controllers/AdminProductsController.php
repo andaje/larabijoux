@@ -6,10 +6,7 @@ use App\Product;
 use App\Category;
 use App\Photo;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\View;
+
 
 
 class AdminProductsController extends Controller
@@ -22,7 +19,7 @@ class AdminProductsController extends Controller
     public function index()
     {
        // $products = Product::with('categories')->get();
-        $products = Product::orderBy('id','desc')->get();
+        $products = Product::orderBy('id','desc')->paginate(10);
         //dd($products);
         return view('admin.products.index', compact('products'));
     }
@@ -138,5 +135,15 @@ class AdminProductsController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
         return redirect('/products');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $products = Product::where('name', 'like', "%$query%")
+                            ->orWhere('description', 'like', "%$query%")
+                            ->paginate(2);
+
+        return view('search')->with('products', $products);
     }
 }

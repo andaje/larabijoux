@@ -372,20 +372,7 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-arrow-circle-down"></i>Subcategories<span
-                                class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{route('subcategories.index')}}">All Subcategories</a>
-                            </li>
-                            <li>
-                                <a href="{{route('subcategories.create')}}">Create Subcategory</a>
-                            </li>
 
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
                     <li>
                         <a href="#"><i class="fa fa-arrow-circle-down"></i>Stock<span
                                 class="fa arrow"></span></a>
@@ -407,9 +394,7 @@
                             <li>
                                 <a href="{{route('orders.index')}}">All Orders</a>
                             </li>
-                            <li>
-                                <a href="{{route('orders.create')}}">Create Order</a>
-                            </li>
+
 
                         </ul>
                         <!-- /.nav-second-level -->

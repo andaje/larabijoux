@@ -25,8 +25,11 @@ use Illuminate\Http\Request;
 
 
 //Route::get('/','HomeController@index');
+Route::get('contact','FrontController@contact')->name('contact');
 Route::get('/', 'FrontController@index')->name('/');
-Route::get('catergories','FrontController@categories');
+//Route::get('cat_prod_settings/{$id}','FrontController@cat_prod_settings')->name('cat_prod_settings');
+Route::get('catergories','FrontController@categories')->name('categories');
+
 Route::get('show_products','FrontController@show_products')->name('show_products');
 //Route::get('shopping_cart','FrontController@cart')->name('shopping_cart');
 
@@ -48,14 +51,17 @@ Route::get('/search/{query}','FrontController@search');
 
 Route::get('stripe', 'StripePaymentController@stripe');
 Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');
-//Route::post('larabijoux/public/aankopen', 'AankopenController@store');
+
+Route::get('/search', 'AdminProductsController@search')->name('search');
+
 
 Auth::routes();
-
+Route::get('my-orders', 'AdminOrdersController@index')->name('orders.index');
+Route::get('my-orders/{order}', 'AdminOrdersController@show')->name('orders.show');
 
 Route::group(['middleware'=>'admin'],function(){
     Route::prefix('admin')->group(function () {
-       // Route::get('/home', 'HomeController@index')->name('home');
+
         Route::resource('users', "AdminUsersController");
         Route::resource('users', "AdminUsersController");
         Route::resource('addresses', "AdminAddressesController");
@@ -65,7 +71,8 @@ Route::group(['middleware'=>'admin'],function(){
         Route::resource('subcategories', "AdminSubcategoriesController");
         Route::resource('products', "AdminProductsController");
         Route::resource('stocks', "AdminStocksController");
-        Route::resource('orders', "AdminOrdersController");
+
+
 
 
 

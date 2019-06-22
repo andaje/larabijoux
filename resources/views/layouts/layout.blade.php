@@ -29,9 +29,9 @@
                     <a class="nav-link" href="{{route('show_products')}}">Store</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link" href="{{route('contact')}}">Contact</a>
                 </li>
-                <li class="nav-item dropdown">
+                {{--<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="{{route('show_products')}}" target="_blank" data-target="{{route('show_products')}}"id="dropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Category
                     </a>
@@ -51,27 +51,29 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">For kids</a>
                     </div>
-                </li>
+                </li>--}}
 
             </ul>
             <div class="d-md-flex flex-md-row">
 
-                <form class="form-inline  mt-mr-0">
-                    <i class="fas fa-search d-none d-md-block pr-2"></i>
-                    <input class="form-control bg-white text-center mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <form action="{{route('search')}}" method="GET" class="form-inline  mt-mr-0">
+
+                    <input class="form-control bg-white text-center mr-sm-2" type="text" name="query" id="query" value="{{request()->input('query')}}" placeholder="Search for products" aria-label="Search">
                 </form>
                 <ul class="nav text-dark">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-dark px-1 pt-2" data-toggle="dropdown" href="#" role="button"
                            aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="login.html">Sing in</a>
-                            <a class="dropdown-item" href="register.html">Register</a>
+                            <a class="dropdown-item" href="{{route('login')}}">Sing in</a>
+                            <a class="dropdown-item" href="{{route('register')}}">Register</a>
+
 
                         </div>
                     </li>
                     <li class="nav-item p-0">
-                        <a class="nav-link text-dark" href="#"><i class="fas fa-shopping-basket"></i></a>
+                        <a class="nav-link text-dark" href="{{route('shopping_cart')}}"><i class="fas fa-shopping-basket"></i></a>
+
                     </li>
 
                 </ul>
@@ -87,9 +89,7 @@
     <div class="row mt-1  bacg">
         <div class=" col-12 col-md-4 text-center lin">
             <h5 class="mt-2  dim">About</h5>
-            <ul class="list-unstyled text-small">
-                <li><a class="text-white" href="#">Team</a></li>
-                <li><a class="text-white" href="#">Locations</a></li>
+            <ul class="list-unstyled text-small ">
                 <li><a class="text-white" href="#">Privacy</a></li>
                 <li><a class="text-white" href="#">Terms</a></li>
             </ul>
@@ -105,23 +105,23 @@
 
         </div>
         <div class="col-12 col-md-4 lin">
-            <h5 class="mt-2 dim text-center">Payment</h5>
-            <ul class="list-unstyled text-center">
-                <li><a  href="#"><i class="fab fa-cc-visa fa-2x txtcol3 "></i></a></li>
-                <li><a  href="#"><i class="fab fa-cc-mastercard fa-2x txtcol3 "></i></a></li>
-                <li><a  href="#"><i class="fab fa-cc-paypal fa-2x txtcol3 "></i></a></li>
+            <h5 class="mt-2 dim text-center ">Payment</h5>
+            <ul class="list-unstyled justify-content-center d-flex ">
+                <li><a  href="#"><i class="fab fa-cc-visa fa-2x txtcol3 mx-1 "></i></a></li>
+                <li><a  href="#"><i class="fab fa-cc-mastercard fa-2x txtcol3 mx-1 "></i></a></li>
+                <li><a  href="#"><i class="fab fa-cc-paypal fa-2x txtcol3 mx-1 "></i></a></li>
 
             </ul>
         </div>
     </div>
     <div class="mt-2 d-flex flex-row justify-content-center">
-        <img class="mb-2 mr-2" src="assets/images/logo.png" alt="" width="20" height="20">
-        <small class="d-block mb-1 text-muted">© 2018-2019</small>
-    </div>
-    <div class="btn-back-to-top bg-hov" id="myBtn" style="display: flex;">
-		<span class="symbol-btn-back-to-top">
-			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
-		</span>
+        <img class=" mr-2" src="assets/images/logo.png" alt="" width="20" height="20">
+        <small class="d-block  text-muted">© 2018-2019</small>
+        <div class="btn-back-to-top bg-hov ml-5 " id="myBtn" style="display: flex;">
+            <span class="symbol-btn-back-to-top ">
+                <i class="fa fa-angle-double-up " aria-hidden="true"></i>
+            </span>
+        </div>
     </div>
 </footer>
 <script src="js/jquery.min.js"></script>

@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-md-between p-3" id="wrapper">
             <!-- Sidebar -->
             <div class="bg-light border-right col-md-2" id="sidebar-wrapper">
-                <div class="sidebar-heading">Categories </div>
+                <div class="sidebar-heading text-center"><b>Categories</b></div>
                 <div class="list-group list-group-flush">
                     @foreach($cat as $categ)
                         <a href="{{route('cat_products',$categ->id)}} " class="list-group-item list-group-item-action bg-light">{{$categ->name}}</a>
@@ -18,9 +18,7 @@
                     @foreach($products as $product)
                         <div class="">
                             <a class="p-3" href=" "><img src="{{asset('' . $product->photo->file)}}" width="250"  alt=""></a>
-                            <div class="">
-                                <p class="m-0 text-center"><a href="">{{$product->name}}</a></p>
-                            </div>
+
                         </div>
 
                         {{-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -60,7 +58,7 @@
                 </div>
                 <div class="col-md-7 mt-0 pb-md-3">
                     <h6 class="text-uppercase my-2"><b>{{$product->name}}</b></h6>
-                    <p>Price : {{$product->price}}</p>
+                    <p>Price :€ {{$product->price}}</p>
                     <p class="">Status :</p>
 
                     <div class="d-flex mb-1">
@@ -113,17 +111,17 @@
                     <div class="d-flex justify-content-center ">
                         <div class="">
                             <img src="assets/images/long_earring/zyta1.jpg" class="dcar2  mr-1 mr-md-5" alt="...">
-                            <h6 class="text-uppercase mt-4"><b>Zyta 25mm</b></h6>
+                            <p class="text-uppercase mt-4 mx-2"><b>Zyta </b></p>
                             <p class="mt-2">Price :</p>
                         </div>
                         <div class="">
                             <img src="assets/images/long_earring/heinar1.jpg" class="dcar2 mr-1 mr-md-5 " alt="...">
-                            <h6 class="text-uppercase mt-4"><b>Heinar 98mm</b></h6>
+                            <p class="text-uppercase mt-4 mx-1"><b>Heinar </b></p>
                             <p class="mt-2">Price :</p>
                         </div>
                         <div class="">
                             <img src="assets/images/long_earring/cruella1.jpg" class="dcar2" alt="...">
-                            <h6 class="text-uppercase mt-4"><b>Cruella 105mm</b></h6>
+                            <p class="text-uppercase mt-4 mx-1"><b>Cruella </b></p>
                             <p class="mt-2">Price : </p>
                         </div>
                     </div>
@@ -132,17 +130,17 @@
                     <div class="d-flex justify-content-center ">
                         <div class="">
                             <img src="assets/images/long_earring/zyta1.jpg" class="dcar2  mr-1 mr-md-5" alt="...">
-                            <h6 class="text-uppercase mt-4"><b>Zoia 65mm</b></h6>
+                            <h6 class="text-uppercase mt-4 mx-1"><b>Zoia </b></h6>
                             <p class="mt-2">Price :</p>
                         </div>
                         <div class="">
                             <img src="assets/images/long_earring/heinar1.jpg" class="dcar2 mr-1 mr-md-5 " alt="...">
-                            <h6 class="text-uppercase mt-4"><b>Shany 90mm</b></h6>
+                            <h6 class="text-uppercase mt-4 mx-1"><b>Shany </b></h6>
                             <p class="mt-2">Price :</p>
                         </div>
                         <div class="">
                             <img src="assets/images/long_earring/cruella1.jpg" class="dcar2" alt="...">
-                            <h6 class="text-uppercase mt-4"><b>Fish 90mm</b></h6>
+                            <h6 class="text-uppercase mt-4 mx-1"><b>Fish </b></h6>
                             <p class="mt-2">Price :</p>
                         </div>
                     </div>

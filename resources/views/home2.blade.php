@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-    <main>
+    <main class="mx-md-3" >
     <section >
         <div id="carouselExampleControls" class="carousel slide py-2" data-ride="carousel">
             <div class="carousel-inner">
@@ -33,7 +33,7 @@
     <section id="news">
         <div class="d-flex flex-column flex-lg-row mt-3">
             <div class="col-lg-4 ">
-                <p class="text-uppercase text-center my-3 " ><a class="txt" href="" >new in</a></p>
+                <p class="text-uppercase text-center my-3 " ><a class="txt" href="{{route('show_products')}}" >Settings</a></p>
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -64,13 +64,13 @@
             </div>
 
             <div class="col-lg-4">
-                <p class="text-uppercase text-center my-3 " ><a class="txt" href="" >wedding</a></p>
-                <a href="#"><img class="img-fluid rounded-circle d-block mx-auto" src="assets/images/wedding1.jpg" alt="wedding"></a>
+                <p class="text-uppercase text-center my-3 " ><a class="txt" href="{{route('show_products')}}" >wedding</a></p>
+                <a href="{{route('show_products')}}"><img class="img-fluid rounded-circle d-block mx-auto" src="assets/images/wedding1.jpg" alt="wedding"></a>
 
             </div>
             <div class="col-lg-4">
-                <p class="text-uppercase text-center my-3" ><a class="txt" href="" >for kids</a></p>
-                <a href="#"><img class="img-fluid rounded-circle d-block mx-auto " src="assets/images/kids11.jpg" alt="kids"></a>
+                <p class="text-uppercase text-center my-3" ><a class="txt" href="{{route('show_products')}}" >for kids</a></p>
+                <a href="{{route('show_products')}}"><img class="img-fluid rounded-circle d-block mx-auto " src="assets/images/kids11.jpg" alt="kids"></a>
 
             </div>
 
