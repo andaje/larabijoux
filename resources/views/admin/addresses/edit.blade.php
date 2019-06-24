@@ -16,10 +16,7 @@
         {!! Form::label('city_postal_code', 'Postal Code:') !!}
         {!! Form::text('city_postal_code',$address->city->postal_code, null, ['class'=>'form-control']) !!}
     </div>
-    <div class="form-group">
-        {!! Form::label('country_name', 'Country:') !!}
-        {!! Form::text('country_name', $address->city->country->name, null, ['class'=>'form-control']) !!}
-    </div>
+
     <div class="form-group">
         {!! Form::submit('Update Address', ['class'=>'btn btn-primary']) !!}
     </div>

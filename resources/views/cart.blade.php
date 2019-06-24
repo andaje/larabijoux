@@ -31,6 +31,7 @@
                                         <td class="cart_price">
                                             <p>€{{ $item->price }}</p>
                                         </td>
+
                                         <td class="cart_quantity">
                                             <div class="cart_quantity_button">
                                                 <a class="cart_quantity_up" href="{{url("cart?product_id=$item->id&increment=1")}}"> + </a>
@@ -41,6 +42,15 @@
                                         <td class="cart_total">
                                             <p class="cart_total_price">€{{ $item->subtotal }}</p>
                                         </td>
+                                        {{--@if($message)
+                                        <td class="cart_price">
+                                            <p > {!! $message !!}  </p>
+                                        </td>
+                                        @else
+                                            <td class="cart_price">
+                                            <p > {!! $mes !!}  </p>
+                                        </td>
+                                        @endif--}}
                                         <td class="cart_delete">
                                             <a type="button" class="btn btn-danger btn-sm cart_quantity_delete " href="{{url("cart?product_id=$item->id&delete=1")}}"><i class="fa fa-times"></i>Remove</a>
                                         </td>

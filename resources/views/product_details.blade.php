@@ -72,7 +72,7 @@
                         </div>
                     </div>--}}
                     <p class="text-uppercase my-2"><b>Description</b></p>
-                    <p>Crystal fancy stone, chaton & pearl, in tombak silverplatted casing soldered on sterling earpin & earpost.</p>
+                    <p>{{$product->description}} .</p>
 
                     <div class="d-flex my-3 ">
                         @if($produ->quantity > 0)

@@ -7,14 +7,14 @@ use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
 
-        $product = $faker->unique()->sentence;
+
 
     return [
         'photo_id'=> $faker->numberBetween(1,10),
         'category_id'=> $faker->randomElement(App\Category::pluck('id')),
-        'name' => $product,
+        'name' => $faker->unique()->randomElement(['P1','P2','P3','P4','P5']),
         'title' => 'Product',
-        'description' => $this->faker->paragraph,
+        'description' => $this->faker->paragraph->words(5),
         'quantity' => 11,
         'price' => 10.00
 

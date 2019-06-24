@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('address_street', 'Address:') !!}
-                {!! Form::select('address_street', [''=>'Choose options'] + $addresses, null, ['class'=>'form-control']) !!}
+                {!! Form::text('address_street',$user->address->street, null, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('role_id', 'Role:') !!}

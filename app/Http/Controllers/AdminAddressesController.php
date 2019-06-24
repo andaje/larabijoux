@@ -81,8 +81,9 @@ class AdminAddressesController extends Controller
         //
 
         $address= Address::findOrFail($id);
-        $cities = City::pluck('name','postal_code','id')->all();
-        return view('admin.addresses.edit', compact('address', 'cities'));
+        $cit = City ::pluck('postal_code', 'id');
+        $cities = City::pluck('name','id');
+        return view('admin.addresses.edit', compact('cit','address', 'cities'));
     }
 
     /**

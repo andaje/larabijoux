@@ -30,7 +30,7 @@ class FrontController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $products = Product::orderBy('id', 'desc')->paginate(4);
+        $products = Product::orderBy('id', 'desc')->paginate(5);
         return view('home2', compact('categories', 'products'));
     }
 
@@ -44,7 +44,7 @@ class FrontController extends Controller
     public function show_products()
     {
         $cat = Category:: all();
-        $products = Product::all();
+        $products = Product::orderBy('id', 'desc')->paginate(5);
         $category = Category:: pluck('name');
         //dd($products);
         return view('show_products', compact('category', 'products', 'cat'));
@@ -105,9 +105,19 @@ class FrontController extends Controller
             $item = Cart::search(function($key, $value) { return $key->id == Request::get('product_id'); })->first();
             Cart::remove($item->rowId);
         }
-        $this->decreaseQuantities();
+        //$message = '';
+        foreach (Cart::content() as $item) {
+            $product = Product::find($item->id);
+            if ($product->quantity - $item->qty < 0) {
+                //$message = 'Not enough products';
+                $product->update(['quantity' => $product->quantity - $item->qty]);
+            }
+                 //$mes = '';
 
-        return view('cart',compact('token','cart')
+
+        }
+
+        return view('cart',compact('token','cart', 'message', 'mes')
         );
     }
     public function clear_cart(){
@@ -140,18 +150,6 @@ class FrontController extends Controller
         return view('checkout', compact ('cart', 'token','cities', 'cit','countries', 'addresses'));
     }
 
-    public function decreaseQuantities()
-    {
-        $message = array();
-        foreach (Cart::content() as $item) {
-            $product = Product::find($item->id);
-
-            if ($product->quantity - $item->qty < 0) {
-                $message[] = 'Not enough Product' . $item->id;
-            }else
-            $product->update(['quantity' => $product->quantity - $item->qty]);
-        }
-    }
 
 
     public function contact(){

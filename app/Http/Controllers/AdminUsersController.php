@@ -96,7 +96,7 @@ class AdminUsersController extends Controller
         //$users = User::with('podcasts')->get();
         $user = User::findOrFail($id);
         $roles = Role::pluck('name','id')->all();
-        $addresses= Address::pluck('street','id')->all();
+        $addresses= Address::pluck('street', 'id');
         $countries = Country::pluck('name')->all();
         $cit = City::pluck('postal_code')->all();
         $cities = City::pluck('name','id')->all();
