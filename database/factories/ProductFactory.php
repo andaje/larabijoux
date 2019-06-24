@@ -14,7 +14,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'category_id'=> $faker->randomElement(App\Category::pluck('id')),
         'name' => $faker->unique()->randomElement(['P1','P2','P3','P4','P5']),
         'title' => 'Product',
-        'description' => $this->faker->paragraph->words(5),
+        'description' => $this->faker->paragraph,
         'quantity' => 11,
         'price' => 10.00
 
