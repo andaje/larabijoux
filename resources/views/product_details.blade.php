@@ -17,7 +17,11 @@
                 <div class=" col-md-5 mb-5   ">
                     @foreach($products as $product)
                         <div class="">
-                            <a class="p-3" href=" "><img src="{{asset('' . $product->photo->file)}}" width="250"  alt=""></a>
+                            <a class="p-3" href=" "> @if((asset('' . $product->photo->file)))
+                                    <img src="{{asset('' . $product->photo->file)}}" alt="" width="250" class="img-responsive img-thumbnail">
+                                @else
+                                    <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                                @endif</a>
 
                         </div>
 
@@ -111,17 +115,29 @@
                 <div class="carousel-item  active">
                     <div class="d-flex justify-content-center ">
                         <div class="">
-                            <img src="assets/images/long_earring/zyta1.jpg" class="dcar2  mr-1 mr-md-5" alt="...">
+                            @if((asset('' . $product->photo->file)))
+                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
+                            @else
+                                <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                            @endif
                             <p class="text-uppercase mt-4 mx-2"><b>Zyta </b></p>
                             <p class="mt-2">Price :</p>
                         </div>
                         <div class="">
-                            <img src="assets/images/long_earring/heinar1.jpg" class="dcar2 mr-1 mr-md-5 " alt="...">
+                            @if((asset('' . $product->photo->file)))
+                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
+                            @else
+                                <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                            @endif
                             <p class="text-uppercase mt-4 mx-1"><b>Heinar </b></p>
                             <p class="mt-2">Price :</p>
                         </div>
                         <div class="">
-                            <img src="assets/images/long_earring/cruella1.jpg" class="dcar2" alt="...">
+                            @if((asset('' . $product->photo->file)))
+                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
+                            @else
+                                <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                            @endif
                             <p class="text-uppercase mt-4 mx-1"><b>Cruella </b></p>
                             <p class="mt-2">Price : </p>
                         </div>
@@ -130,17 +146,29 @@
                 <div class="carousel-item">
                     <div class="d-flex justify-content-center ">
                         <div class="">
-                            <img src="assets/images/long_earring/zyta1.jpg" class="dcar2  mr-1 mr-md-5" alt="...">
+                            @if((asset('' . $product->photo->file)))
+                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
+                            @else
+                                <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                            @endif
                             <h6 class="text-uppercase mt-4 mx-1"><b>Zoia </b></h6>
                             <p class="mt-2">Price :</p>
                         </div>
                         <div class="">
-                            <img src="assets/images/long_earring/heinar1.jpg" class="dcar2 mr-1 mr-md-5 " alt="...">
+                            @if((asset('' . $product->photo->file)))
+                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
+                            @else
+                                <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                            @endif
                             <h6 class="text-uppercase mt-4 mx-1"><b>Shany </b></h6>
                             <p class="mt-2">Price :</p>
                         </div>
                         <div class="">
-                            <img src="assets/images/long_earring/cruella1.jpg" class="dcar2" alt="...">
+                            @if((asset('' . $product->photo->file)))
+                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
+                            @else
+                                <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                            @endif
                             <h6 class="text-uppercase mt-4 mx-1"><b>Fish </b></h6>
                             <p class="mt-2">Price :</p>
                         </div>

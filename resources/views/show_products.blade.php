@@ -18,22 +18,25 @@
 
         <div class=" d-flex flex-column flex-lg-row justify-content-around">
                 @foreach($products as $product)
-
                         <div class=" mx-3">
-                            <a class="p-3" href="{{route('product_details', $product->id)}}"><img src="{{asset('' . $product->photo->file)}}" width="150"  alt=""></a>
+                            <a class="p-3" href="{{route('product_details', $product->id)}}">
+                                @if((asset('' . $product->photo->file)))
+                                    <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
+                                @else
+                                    <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                                @endif
+                            </a>
                             <div class="">
                                 <p class="m-0 text-center"><a href="{{route('product_details', $product->id)}}">{{ $product->name}}</a></p>
                             </div>
                             <div>
-                                <p class="text-center">€ {{ $product->price}}</p>
-                            </div>
+                                <p class="text-center">€ {{ $product->price}}</p></div>
 
                             <div class="" >
                                 <form action="{{url('cart')}}" method="post">
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                    <button type="submit" class="btn btnAdd ml-3 text-center cart" style="width: 160px";
-                                    >
+                                    <button type="submit" class="btn btnAdd ml-3 text-center cart" style="width: 160px";>
                                         <i class="fa fa-shopping-cart"></i>
                                         Add to cart
                                     </button>
