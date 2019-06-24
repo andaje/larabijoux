@@ -116,27 +116,27 @@
                     <div class="d-flex justify-content-center ">
                         <div class="">
                             @if((asset('' . $product->photo->file)))
-                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
+                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="70" class="img-responsive img-thumbnail">
                             @else
-                                <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                                <img src="https://placehold.it/70x70" alt="" class="img-responsive img-thumbnail">
                             @endif
                             <p class="text-uppercase mt-4 mx-2"><b>Zyta </b></p>
                             <p class="mt-2">Price :</p>
                         </div>
                         <div class="">
                             @if((asset('' . $product->photo->file)))
-                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
+                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="70" class="img-responsive img-thumbnail">
                             @else
-                                <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                                <img src="https://placehold.it/70x70" alt="" class="img-responsive img-thumbnail">
                             @endif
                             <p class="text-uppercase mt-4 mx-1"><b>Heinar </b></p>
                             <p class="mt-2">Price :</p>
                         </div>
                         <div class="">
                             @if((asset('' . $product->photo->file)))
-                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
+                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="70" class="img-responsive img-thumbnail">
                             @else
-                                <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                                <img src="https://placehold.it/70x70" alt="" class="img-responsive img-thumbnail">
                             @endif
                             <p class="text-uppercase mt-4 mx-1"><b>Cruella </b></p>
                             <p class="mt-2">Price : </p>
@@ -147,27 +147,27 @@
                     <div class="d-flex justify-content-center ">
                         <div class="">
                             @if((asset('' . $product->photo->file)))
-                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
+                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="70" class="img-responsive img-thumbnail">
                             @else
-                                <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                                <img src="https://placehold.it/70x70" alt="" class="img-responsive img-thumbnail">
                             @endif
                             <h6 class="text-uppercase mt-4 mx-1"><b>Zoia </b></h6>
                             <p class="mt-2">Price :</p>
                         </div>
                         <div class="">
                             @if((asset('' . $product->photo->file)))
-                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
+                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="70" class="img-responsive img-thumbnail">
                             @else
-                                <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                                <img src="https://placehold.it/70x70" alt="" class="img-responsive img-thumbnail">
                             @endif
                             <h6 class="text-uppercase mt-4 mx-1"><b>Shany </b></h6>
                             <p class="mt-2">Price :</p>
                         </div>
                         <div class="">
                             @if((asset('' . $product->photo->file)))
-                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
+                                <img src="{{asset('' . $product->photo->file)}}" alt="" width="70" class="img-responsive img-thumbnail">
                             @else
-                                <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
+                                <img src="https://placehold.it/70x70" alt="" class="img-responsive img-thumbnail">
                             @endif
                             <h6 class="text-uppercase mt-4 mx-1"><b>Fish </b></h6>
                             <p class="mt-2">Price :</p>
