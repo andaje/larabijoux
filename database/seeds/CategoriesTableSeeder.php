@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AddressesTableSeeder extends Seeder
+class CategoriesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,6 @@ class AddressesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
-        factory('App\Address',5)->create();
+        factory('App\Category', 6)->create();
     }
 }

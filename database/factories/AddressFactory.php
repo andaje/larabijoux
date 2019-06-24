@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Address::class, function (Faker $faker) {
     return [
-        'city_id'=> $faker ->numberBetween($min =1, $max = 10),
+        'city_id'=> $faker ->randomElement(App\City::pluck('id')),
         'street' => $faker ->streetName,
     ];
 });

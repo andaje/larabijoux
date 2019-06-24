@@ -13,6 +13,6 @@ class CountriesTableSeeder extends Seeder
     public function run()
     {
         //
-        factory('App\Country', 10)->create();
+        factory('App\Country', 5)->create();
     }
 }

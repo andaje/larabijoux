@@ -19,8 +19,7 @@ class DatabaseSeeder extends Seeder
             Db::table('users')->truncate();
             Db::table('categories')->truncate();
             Db::table('products')->truncate();
-            Db::table('orders')->truncate();
-            Db::table('stocks')->truncate();
+
 
     }
         $this->call(RolesTableSeeder::class);
@@ -30,7 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
         $this->call(ProductsTableSeeder::class);
-        $this->call(OrdersTableSeeder::class);
+
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }
 }

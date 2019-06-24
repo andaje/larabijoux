@@ -9,7 +9,7 @@ $factory->define(City::class, function (Faker $faker) {
     return [
         //
 
-        'country_id'=> $faker->numberBetween($min =1, $max = 10),
+        'country_id'=> $faker->randomElement(App\Country::pluck('id')),
         'name'=> $faker->city,
         'postal_code' => $faker->postcode,
     ];
