@@ -10,6 +10,7 @@
             <th scope="col">Title</th>
             <th scope="col">Description</th>
             <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
             <th scope="col">Created</th>
             <th scope="col">Updated</th>
         </tr>
@@ -27,6 +28,7 @@
                     <td>{{$product->title}}</td>
                     <td>{{$product->description}}</td>
                     <td>{{$product->price}}</td>
+                    <td>{{$product->quantity}}</td>
                     <td>{{$product->created_at}}</td>
                     <td>{{$product->updated_at}}</td>
                 </tr>

@@ -25,14 +25,17 @@
         {!! Form::text('price' ,null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('category_id', 'Category:') !!}
-        {!! Form::select('category_id', [''=>'Choose options'] + $categories, null, ['class'=>'form-control']) !!}
+        {!! Form::label('quantity', 'Quantity:') !!}
+        {!! Form::text('quantity' ,null, ['class'=>'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('category_name', 'Category:') !!}
+        {!! Form::text('category_name', $product->category->name, null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::submit('Update Product', ['class'=>'btn btn-primary']) !!}
     </div>
     {!! Form::close() !!}
-
     {!! Form::open(['method'=>'DELETE', 'action'=>['AdminProductsController@destroy', $product->id],
        'files'=>true])
         !!}

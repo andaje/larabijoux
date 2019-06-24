@@ -6,7 +6,7 @@ use App\Product;
 use App\Category;
 use App\Photo;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 
 class AdminProductsController extends Controller
@@ -60,6 +60,7 @@ class AdminProductsController extends Controller
         $product ->title = $request->input('title');
         $product ->description = $request->input('description');
         $product ->price = $request->input('price');
+        $product ->quantity = $request->input('quantity');
         $product ->category_id = $category;
         $product ->save();
 
@@ -118,11 +119,22 @@ class AdminProductsController extends Controller
         $product->update($input);
         $product->update(['name'=>$request->get('name'),'title'=>$request->get('title'),
             'description'=>$request->get('description'),
-            'price'=>$request->get('price'),
+            'price'=>$request->get('price'),'quantity'=>$request->get('quantity'),'add_quantity'=>$request->get('add_quantity'),
             'category_id'=>$category->id]);
+
 
         return redirect('/admin/products');
     }
+
+   /* public function update_qty(Request $request, $id){
+        $product = Product::findOrFail($id);
+        //$products = Product::firstOrCreate(['name' => request('product_name')]);
+        $product->update(['quantity'=>$request->get('quantity')]);
+        $new_quantity = $request->all()['add_quantity'] ;
+        DB::table('products')->increment('quantity', $new_quantity);
+
+        return redirect('/admin/products');
+    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -134,7 +146,7 @@ class AdminProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $product->delete();
-        return redirect('/products');
+        return redirect('admin/products');
     }
 
     public function search(Request $request)

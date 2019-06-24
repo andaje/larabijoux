@@ -11,7 +11,7 @@
                     <i class="fas fa-shopping-basket"></i>First login</a>
             @else
                 <div class="col-md-4 ">
-                    if($user)
+
 
                         {!! Form::model(Auth::user(), ['method'=>'PATCH', 'action'=> ['AdminUsersController@update', Auth::user()->id],'files'=>true]) !!}
                         <div class="form-group">

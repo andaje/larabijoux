@@ -24,6 +24,10 @@
         {!! Form::text('price' ,null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
+        {!! Form::label('quantity', 'Quantity:') !!}
+        {!! Form::text('quantity' ,null, ['class'=>'form-control']) !!}
+    </div>
+    <div class="form-group">
         {!! Form::label('category_id', 'Category:') !!}
         {!! Form::select('category_id', [''=>'Choose options'] + $categories, null, ['class'=>'form-control']) !!}
     </div>

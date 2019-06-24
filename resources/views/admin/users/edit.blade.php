@@ -23,20 +23,8 @@
                 {!! Form::text('email', null, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
-                {!! Form::label('address_id', 'Address:') !!}
-                {!! Form::select('address_id', [''=>'Choose options'] + $addresses, null, ['class'=>'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('name_city_id', 'City Name:') !!}
-                {!! Form::select('name_city_id', [''=>'Choose options'] + $cities, null, ['class'=>'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('code_city_id', 'Postal Code:') !!}
-                {!! Form::select('code_city_id', [''=>'Choose options'] + $cit, null, ['class'=>'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('user_country_id', 'Country:') !!}
-                {!! Form::select('user_country_id', [''=>'Choose options'] + $countries, null, ['class'=>'form-control']) !!}
+                {!! Form::label('address_street', 'Address:') !!}
+                {!! Form::select('address_street', [''=>'Choose options'] + $addresses, null, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('role_id', 'Role:') !!}

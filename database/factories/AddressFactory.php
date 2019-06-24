@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Address::class, function (Faker $faker) {
     return [
-        'city_id'=> $faker ->numberBetween($min =1, $max = 1000),
+        'city_id'=> $faker ->numberBetween($min =1, $max = 10),
         'street' => $faker ->streetName,
     ];
 });

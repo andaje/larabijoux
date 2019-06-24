@@ -15,10 +15,10 @@
 
             </div>
 
-        <div class="d-flex justify-content-around">
+        <div class=" d-flex flex-column flex-lg-row justify-content-around">
                 @foreach($products as $product)
 
-                        <div class="mx-3">
+                        <div class=" mx-3">
                             <a class="p-3" href="{{route('product_details', $product->id)}}"><img src="{{asset('' . $product->photo->file)}}" width="150"  alt=""></a>
                             <div class="">
                                 <p class="m-0 text-center"><a href="{{route('product_details', $product->id)}}">{{ $product->name}}</a></p>

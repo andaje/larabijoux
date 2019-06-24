@@ -7,19 +7,31 @@ use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
+    protected $toTruncate = ['roles','countries','cities', 'addresses', 'users', 'categories', 'products', 'orders'];
     public function run()
     {
-         $this->call(UsersTableSeeder::class);
-         $this->call(RolesTableSeeder::class);
-         $this->call(CountriesTableSeeder::class);
-         $this->call(CitiesTableSeeder::class);
-         $this->call(AddressesTableSeeder::class);
-
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        foreach ($this->toTruncate as $table) {
+            Db::table('roles')->truncate();
+            Db::table('countries')->truncate();
+            Db::table('cities')->truncate();
+            Db::table('addresses')->truncate();
+            Db::table('users')->truncate();
+            Db::table('categories')->truncate();
+            Db::table('products')->truncate();
+            Db::table('orders')->truncate();
+            Db::table('stocks')->truncate();
 
     }
+        $this->call(RolesTableSeeder::class);
+        $this->call(CountriesTableSeeder::class);
+        $this->call(CitiesTableSeeder::class);
+        $this->call(AddressesTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
+        $this->call(OrdersTableSeeder::class);
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+    }
 }
+

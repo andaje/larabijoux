@@ -14,7 +14,7 @@
             </div>
             <div class="row col-md-10">
 
-                <div class="col-md-5 mb-5   ">
+                <div class=" col-md-5 mb-5   ">
                     @foreach($products as $product)
                         <div class="">
                             <a class="p-3" href=" "><img src="{{asset('' . $product->photo->file)}}" width="250"  alt=""></a>
@@ -58,10 +58,9 @@
                 </div>
                 <div class="col-md-7 mt-0 pb-md-3">
                     <h6 class="text-uppercase my-2"><b>{{$product->name}}</b></h6>
-                    <p>Price :€ {{$product->price}}</p>
-                    <p class="">Status :</p>
-
-                    <div class="d-flex mb-1">
+                    <p >Price :€ {{$product->price}}</p>
+                    <p > {!! $stockLevel !!} </p>
+                    {{--<div class="d-flex mb-1">
                         <p class="mr-1">Colors :</p>
                         <div>
                             <img class="trhov" src="assets/images/color/Crystal001Clear.jpg" alt="">
@@ -71,20 +70,22 @@
                             <img class="trhov" src="assets/images/color/Emerald.jpg" alt="">
                             <img class="trhov" src="assets/images/color/Jet.jpg" alt="">
                         </div>
-                    </div>
-                    <p class="text-uppercase my-3"><b>Description</b></p>
+                    </div>--}}
+                    <p class="text-uppercase my-2"><b>Description</b></p>
                     <p>Crystal fancy stone, chaton & pearl, in tombak silverplatted casing soldered on sterling earpin & earpost.</p>
 
                     <div class="d-flex my-3 ">
-                        <form action="{{url('cart')}}" method="post">
-                            <input type="hidden" name="product_id" value="{{$product->id}}">
-                            <input type="hidden" name="_token" value="{{csrf_token()}}">
-                            <button type="submit" class="btn btnAdd  mr-5 text-center cart" style="width: 160px";
-                            >
-                                <i class="fa fa-shopping-cart"></i>
-                                Add to cart
-                            </button>
-                        </form>
+                        @if($produ->quantity > 0)
+                            <form action="{{url('cart')}}" method="post">
+                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                <button type="submit" class="btn btnAdd  mr-5 text-center cart" style="width: 160px";
+                                >
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Add to cart
+                                </button>
+                            </form>
+                        @endif
                         <div class="d-flex flex-column  ">
                             <a class="text-muted text-left" href="">Add to Favorites</a>
                             <a class="text-muted text-left" href="">Add to Wishlist</a>

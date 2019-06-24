@@ -17,7 +17,9 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
                                 @foreach($cart as $item)
+
                                     <tr>
                                         {{--<td class="cart_product">
                                             <a href=""><img src="images/cart/one.png" alt=""></a>
@@ -41,12 +43,12 @@
                                         </td>
                                         <td class="cart_delete">
                                             <a type="button" class="btn btn-danger btn-sm cart_quantity_delete " href="{{url("cart?product_id=$item->id&delete=1")}}"><i class="fa fa-times"></i>Remove</a>
-
                                         </td>
                                     </tr>
                                 @endforeach
                                 @else
                                     <p class="alert-info">No items in shopping cart</p>
+
                                 @endif
                                 </tbody>
                             </table>
@@ -67,14 +69,13 @@
                                             </form>
 
 
-                                            <a href ="{{route('show_products')}}"  class="btn btn-warning">
+                                            <a href ="{{route('show_products')}}"  class="btn btn-primary">
                                                 <i class="fas fa-shopping-basket"></i> Continue Shopping
                                             </a>
                                             <a href="{{route('checkout')}}" class="btn btn-success ml-2 mr-md-2">
                                                 Checkout <i class="fas fa-arrow-alt-right bg-dark"></i>
                                             </a>
-                                            <input id="nonce" name="payment_method_nonce" type="hidden" />
-                                            <button class="btn btn-sm btn-primary" type="submit"><span>Test Transaction</span></button>
+
                                         </div>
 
                                         <div class=" col-12 d-flex justify-content-end  lineb">
