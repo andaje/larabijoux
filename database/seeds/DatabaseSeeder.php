@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
-    protected $toTruncate = ['roles','countries','cities', 'addresses', 'users', 'categories', 'products', 'orders'];
+    protected $toTruncate = ['roles','countries','cities', 'addresses', 'users', 'categories', 'products', 'orders', 'photos'];
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             Db::table('users')->truncate();
             Db::table('categories')->truncate();
             Db::table('products')->truncate();
+            Db::table('photos')->truncate();
 
 
     }
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
         $this->call(ProductsTableSeeder::class);
+        $this->call(PhotosTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }

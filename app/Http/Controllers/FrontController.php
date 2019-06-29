@@ -55,7 +55,7 @@ class FrontController extends Controller
         $cat = Category:: all();
         //$products = Product::all();
         $category = Category::find($id);
-        $products = Product::where('category_id', $category->id)->get();
+        $products = Product::where('category_id', $category->id)->paginate(5);
         //dd($cat_prod);
 
         return view('show_products', compact('category', 'cat', 'products'));

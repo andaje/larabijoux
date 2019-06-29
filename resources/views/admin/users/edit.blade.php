@@ -23,8 +23,8 @@
                 {!! Form::text('email', null, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
-                {!! Form::label('address_street', 'Address:') !!}
-                {!! Form::text('address_street',$user->address->street, null, ['class'=>'form-control']) !!}
+                {!! Form::label('address_id', 'Address:') !!}
+                {!! Form::select('address_id',[''=>'Choose options'] + $addresses, null, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('role_id', 'Role:') !!}

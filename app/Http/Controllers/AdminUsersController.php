@@ -9,7 +9,7 @@ use App\Role;
 use App\User;
 use App\City;
 use App\Country;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -33,9 +33,9 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        $countries = Country::pluck('name','id')->all();
-        $cit = City::pluck('postal_code', 'id')->all();
-        $cities = City::pluck('name','id')->all();
+        //$countries = Country::pluck('name','id')->all();
+       // $cit = City::pluck('postal_code', 'id')->all();
+        //$cities = City::pluck('name','id')->all();
         $addresses = Address::pluck('street','id')->all();
         $roles = Role::pluck('name','id')->all();
         return view('admin.users.create', compact('roles','addresses', 'cities', 'cit', 'countries'));
@@ -50,7 +50,7 @@ class AdminUsersController extends Controller
 
         public function store(UsersRequest $request)
     {
-        User::create([
+       /* User::create([
              'first_name'=> $request['first_name'],
              'last_name'=> $request['last_name'],
              'email'=> $request['email'],
@@ -58,7 +58,7 @@ class AdminUsersController extends Controller
              'is_active'=> $request['is_active'],
              'address_id'=> $request['address_id'],
              'password' => bcrypt($request['password']),
-        ]);
+        ]);*/
         $input = $request->all();
 
         if($file = $request->file('photo_id')){
@@ -68,7 +68,20 @@ class AdminUsersController extends Controller
             $input['photo_id'] = $photo->id;
         }
         $input['password'] =Hash::make($request['password']);
-        User::create($input);
+        //Address :: firstOrCreate(['street'=> $request['address_street']]);
+        $user = new User();
+        $address = $request->all()['address_id'];
+        $role = $request->all()['role_id'];
+       // $user ->photo_id = $photo->id;
+        // dd($photo->id);
+        $user ->first_name = $request->input('first_name');
+        $user ->last_name = $request->input('last_name');
+        $user ->email = $request->input('email');
+        $user ->role_id = $role;
+        $user ->is_active = $request->input('is_active');
+        $user ->address_id = $address;
+        $user->password = bcrypt($request->input('password'));
+        $user ->save();
 
         return redirect('/admin/users');
     }
@@ -96,28 +109,20 @@ class AdminUsersController extends Controller
         //$users = User::with('podcasts')->get();
         $user = User::findOrFail($id);
         $roles = Role::pluck('name','id')->all();
-        $addresses= Address::pluck('street', 'id');
-        $countries = Country::pluck('name')->all();
-        $cit = City::pluck('postal_code')->all();
-        $cities = City::pluck('name','id')->all();
+        $addresses= Address::pluck('street', 'id')->all();
+        //$countries = Country::pluck('name')->all();
+       // $cit = City::pluck('postal_code')->all();
+       // $cities = City::pluck('name','id')->all();
 
 
 
         return view('admin.users.edit', compact('user','roles', 'addresses', 'countries','cit', 'cities'));
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UsersEditRequest $request, $id)
     {
         $user = User::findOrFail($id);
-        //$request->password
-        //$request['password']
-        //$request->get('password')
+
         if(trim($request->password) == ''){
             $input = $request->except('password');
         }else {
@@ -134,18 +139,13 @@ class AdminUsersController extends Controller
         $user->update($input);
         return redirect('admin/users');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
-        unlink(public_path() . $user->photo->file);
-        Session::flash('deleted_user', 'The user is deleted');
+        //unlink(public_path() . $user->photo->file);
+       // Session::flash('deleted_user', 'The user is deleted');
         return redirect('/admin/users');
     }
 }

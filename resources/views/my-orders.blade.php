@@ -19,7 +19,7 @@
             @endif
         </div>--}}
 
-        <div class="products-section my-orders container">
+        <div class="products-section my-orders container" style="min-height: 50vh">
 
             <div class="my-profile">
                 <div class="products-header">

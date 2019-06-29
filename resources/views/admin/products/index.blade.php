@@ -21,7 +21,7 @@
                 <tr>
 
                     <td>
-                        <img height="50" src="{{$product->photo ? asset($product->photo->file) :'http://place-hold.it/400x400'}}" alt="">
+                        <img height="50" src="{{$product->photo ? asset($product->photo->file) : ' https://via.placeholder.com/100x100'}}" alt="">
                     </td>
                     <td><a href="{{route('products.edit', $product->id)}}">{{$product->name}}</a></td>
                     <td>{{$product->category->name}}</td>
@@ -37,5 +37,6 @@
         @endif
         </tbody>
     </table>
+    {{$products->links()}}
 @stop
 

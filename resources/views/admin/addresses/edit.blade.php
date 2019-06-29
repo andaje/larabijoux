@@ -9,14 +9,9 @@
         {!! Form::text('street', null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('city_name', 'City:') !!}
-        {!! Form::text('city_name',$address->city->name, null, ['class'=>'form-control']) !!}
+        {!! Form::label('city_id', 'City:') !!}
+        {!! Form::select('city_id', [''=>'Choose options'] + $cities, null, ['class'=>'form-control']) !!}
     </div>
-    <div class="form-group">
-        {!! Form::label('city_postal_code', 'Postal Code:') !!}
-        {!! Form::text('city_postal_code',$address->city->postal_code, null, ['class'=>'form-control']) !!}
-    </div>
-
     <div class="form-group">
         {!! Form::submit('Update Address', ['class'=>'btn btn-primary']) !!}
     </div>

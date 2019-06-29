@@ -28,8 +28,8 @@
             @endif
             </tbody>
         </table>
+        {{$cities->links()}}
     </div>
     <div class="col-md-6">
-
     </div>
 @stop

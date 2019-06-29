@@ -92,5 +92,6 @@
         </div>
     </div>
 </main>
+{{ $products->links() }}
 
 @endsection

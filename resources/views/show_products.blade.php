@@ -20,11 +20,7 @@
                 @foreach($products as $product)
                         <div class=" mx-3">
                             <a class="p-3" href="{{route('product_details', $product->id)}}">
-                                @if((asset('' . $product->photo->file)))
-                                    <img src="{{asset('' . $product->photo->file)}}" alt="" width="150" class="img-responsive img-thumbnail">
-                                @else
-                                    <img src="https://placehold.it/150x150" alt="" class="img-responsive img-thumbnail">
-                                @endif
+                                <img height="150" src="{{$product->photo ? asset($product->photo->file) :'http://place-hold.it/400x400'}}" alt="">
                             </a>
                             <div class="">
                                 <p class="m-0 text-center"><a href="{{route('product_details', $product->id)}}">{{ $product->name}}</a></p>
