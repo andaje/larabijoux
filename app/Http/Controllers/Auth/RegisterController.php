@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Address;
+use App\City;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -28,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -49,26 +52,45 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'street' => ['required', 'string', 'max:255'],
+            'house_nr' => ['required', 'max:10'],
+            'postal_code' => ['required', 'string', 'max:20'],
+            'city' => ['required', 'string', 'max:255'],
+
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
+
     protected function create(array $data)
     {
-        return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
+        $city = City::firstOrCreate([
+            'postal_code' => $data['postal_code'],
+            'name' => $data['city'],
+            'country_id' => $data['country'],
+        ]);
+
+        $address = Address::firstOrCreate([
+            'street' => $data['street'],
+            'house_nr' => $data['house_nr'],
+            'bus' => $data['bus'],
+            'city_id' => $city->id,
+
+        ]);
+
+
+        $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'address_id' => $address->id,
         ]);
+        // $user->roles()->attach(2);
+
+        return $user;
     }
 }

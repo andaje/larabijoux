@@ -5,10 +5,7 @@
 
     {!! Form::model($user,['method'=>'PATCH', 'action'=>['AdminUsersController@update', $user->id],'files'=>true]) !!}
     <div class="row">
-        <div class="col-md-3">
-            <img class="img-responsive" src="{{$user->photo ? asset($user->photo->file) : 'http://place-hold.it/400x400'}}"
-                 alt="">
-        </div>
+
         <div class="col-md-9">
             <div class="form-group">
                 {!! Form::label('first_name', 'First Name:') !!}
@@ -37,10 +34,6 @@
             <div class="form-group">
                 {!! Form::label('password', 'Password:') !!}
                 {!! Form::password('password', ['class'=>'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('photo_id', 'Photo:') !!}
-                {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::submit('Update User', ['class'=>'btn btn-primary col-md-6']) !!}

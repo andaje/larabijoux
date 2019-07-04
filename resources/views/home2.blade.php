@@ -1,8 +1,8 @@
 @extends('layouts.layout')
 @section('content')
     <main class="mx-md-3" >
-    <section >
-        <div id="carouselExampleControls" class="carousel slide py-2" data-ride="carousel">
+        <section >
+            <div id="carouselExampleControls" class="carousel slide py-2" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img class="d-block w-100" src="assets/images/sl1.jpg" alt="First slide">

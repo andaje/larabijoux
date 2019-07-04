@@ -17,10 +17,10 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'photo_id'=> $faker->numberBetween(1,5),
-        'role_id'=> $faker->randomElement(App\Role::pluck('id')),
+
+        'role_id'=> 2,
         'address_id'=> $faker->randomElement(App\Address::pluck('id')),
-        'is_active' => 0,
+        'is_active' => 1,
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,

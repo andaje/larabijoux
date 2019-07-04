@@ -10,39 +10,18 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'role_id' , 'address_id','is_active','photo_id'
+        'first_name', 'last_name', 'email', 'password', 'role_id' , 'address_id','is_active'
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
     public function role()
     {
         return $this->belongsTo('App\Role');
-    }
-    public function photo(){
-        return $this->belongsTo('App\Photo');
     }
     public function address()
     {
@@ -52,13 +31,19 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Order');
     }
-
-
     public function isAdmin()
     {
-        if ($this->role->name == 'Administrator' && $this->is_active == 1) {
+        if ($this->role->name == 'Admin' && $this->is_active == 1) {
             return true;
         }
         return false;
     }
+
+    /*public function isActive(){
+        if($this->is_active == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }*/
 }

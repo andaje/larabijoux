@@ -12,6 +12,7 @@
     <title>Madamme Bijoux home</title>
 </head>
 <nav class="navbar navbar-expand-md navbar-light pb-2 myfixedtop  d-flex flex-column">
+
     <div class="w-100 py-3 mx-0 text-center bacg ">
         <a class="navbar-brand  " href="#"><h1 class="logo linear-wipe pt-2 m-0">Madamme Bijoux</h1></a>
     </div>
@@ -60,26 +61,49 @@
 
                     <input class="form-control bg-white text-center mr-sm-2" type="text" name="query" id="query" value="{{request()->input('query')}}" placeholder="Search for products" aria-label="Search">
                 </form>
-                <ul class="nav text-dark">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark px-1 pt-2" data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{route('login')}}">Sing in</a>
-                            <a class="dropdown-item" href="{{route('register')}}">Register</a>
+                <ul class="navbar-nav ml-auto">
 
+                    <!-- Authentication Links -->
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->last_name }} <span class="caret"></span>
+                            </a>
 
-                        </div>
-                    </li>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
                     <li class="nav-item p-0">
                         <a class="nav-link text-dark" href="{{route('shopping_cart')}}"><i class="fas fa-shopping-basket"></i></a>
 
                     </li>
 
                 </ul>
+
+
+
             </div>
         </div>
-
+    </div>
     </div>
 
 </nav>

@@ -50,30 +50,12 @@ class AdminUsersController extends Controller
 
         public function store(UsersRequest $request)
     {
-       /* User::create([
-             'first_name'=> $request['first_name'],
-             'last_name'=> $request['last_name'],
-             'email'=> $request['email'],
-             'role_id' => $request['role_id'],
-             'is_active'=> $request['is_active'],
-             'address_id'=> $request['address_id'],
-             'password' => bcrypt($request['password']),
-        ]);*/
-        $input = $request->all();
 
-        if($file = $request->file('photo_id')){
-            $name = time() . $file->getClientOriginalName();
-            $file->move('images', $name);
-            $photo = Photo::create(['file'=>$name]);
-            $input['photo_id'] = $photo->id;
-        }
+        $input = $request->all();
         $input['password'] =Hash::make($request['password']);
-        //Address :: firstOrCreate(['street'=> $request['address_street']]);
         $user = new User();
         $address = $request->all()['address_id'];
         $role = $request->all()['role_id'];
-       // $user ->photo_id = $photo->id;
-        // dd($photo->id);
         $user ->first_name = $request->input('first_name');
         $user ->last_name = $request->input('last_name');
         $user ->email = $request->input('email');
@@ -129,12 +111,6 @@ class AdminUsersController extends Controller
             $input = $request->all();
             $input['password'] = Hash::make($request['password']);
             $input = $request->all();
-        }
-        if($file = $request->file('photo_id')) {
-            $name = time() . $file->getClientOriginalName();
-            $file->move('images', $name);
-            $photo = Photo::create(['file' => $name]);
-            $input['photo_id'] = $photo->id;
         }
         $user->update($input);
         return redirect('admin/users');

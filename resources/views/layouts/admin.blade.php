@@ -373,20 +373,7 @@
                         <!-- /.nav-second-level -->
                     </li>
 
-                    <li>
-                        <a href="#"><i class="fa fa-arrow-circle-down"></i>Stock<span
-                                class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{route('stocks.index')}}">All Stock</a>
-                            </li>
-                            <li>
-                                <a href="{{route('stocks.create')}}">Add Stock</a>
-                            </li>
 
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
                     <li>
                         <a href="#"><i class="fa fa-arrow-circle-down"></i>Orders<span
                                 class="fa arrow"></span></a>

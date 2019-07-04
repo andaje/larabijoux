@@ -6,6 +6,8 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Street</th>
+            <th scope="col">Nr</th>
+            <th scope="col">Bus</th>
             <th scope="col">City</th>
             <th scope="col">Country</th>
             <th scope="col">Created_at</th>
@@ -19,6 +21,8 @@
                 <tr>
                     <td>{{$address->id}}</td>
                     <td><a href="{{route('addresses.edit', $address->id)}}">{{$address->street}}</a></td>
+                    <td>{{$address->house_nr}}</td>
+                    <td>{{$address->bus}}</td>
                     <td>{{$address->city ? $address->city->name : 'Uncategorized'}}</td>
                     <td>{{$address->city ? $address->city->country->name : 'Uncategorized'}}</td>
                     <td>{{$address->created_at}}</td>

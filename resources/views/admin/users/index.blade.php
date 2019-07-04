@@ -6,7 +6,6 @@
         <thead>
         <tr>
             <th scope="col">Id</th>
-            <th scope="col">Photo</th>
             <th scope="col"> Name</th>
             <th scope="col">E-mail</th>
             <th scope="col">Street</th>
@@ -24,9 +23,7 @@
             @foreach($users as $user)
                 <tr>
                     <td>{{$user->id}}</td>
-                    <td>
-                        <img height="50" src="{{$user->photo ? asset($user->photo->file) :'http://place-hold.it/400x400'}}" alt="">
-                    </td>
+
                     <td><a href="{{route('users.edit', $user->id)}}">{{$user->first_name}} {{$user->last_name}}</a></td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->address->street}}</td>

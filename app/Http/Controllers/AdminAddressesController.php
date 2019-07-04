@@ -30,6 +30,8 @@ class AdminAddressesController extends Controller
         $address = new Address();
         $city = $request->all()['city_id'];
         $address ->street = $request->input('street');
+        $address ->house_nr = $request->input('house_nr');
+        $address ->bus = $request->input('bus');
         $address ->city_id = $city;
         $address ->save();
         return redirect('/admin/addresses');
@@ -50,8 +52,10 @@ class AdminAddressesController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $address = Address::findOrFail($id);
+        //dd($input);
+;        $address = Address::findOrFail($id);
         $address->update($input);
+        //dd($address);
         return redirect('/admin/addresses');
     }
     public function destroy($id)

@@ -36,7 +36,7 @@ Route::get('show_products','FrontController@show_products')->name('show_products
 
 Route::get('show_products/{id}','FrontController@cat_prod')->name('cat_products');
 Route::get('product_details/{id}','FrontController@product_details')->name('product_details');
-Route::get('/admin','DashboardController@index');
+//Route::get('/admin','DashboardController@index');
 
 
 
@@ -56,6 +56,7 @@ Route::get('/search', 'AdminProductsController@search')->name('search');
 
 
 Auth::routes();
+Route::get('/admin','DashboardController@index')->middleware('admin');
 Route::get('my-orders', 'AdminOrdersController@index')->name('orders.index');
 Route::get('my-orders/{order}', 'AdminOrdersController@show')->name('orders.show');
 
@@ -68,9 +69,8 @@ Route::group(['middleware'=>'admin'],function(){
         Route::resource('countries', "AdminCountriesController");
         Route::resource('cities', "AdminCitiesController");
         Route::resource('categories', "AdminCategoriesController");
-        Route::resource('subcategories', "AdminSubcategoriesController");
         Route::resource('products', "AdminProductsController");
-        Route::resource('stocks', "AdminStocksController");
+
 
 
 
