@@ -17,9 +17,7 @@ class Product extends Model
         return $this->belongsTo('App\Photo');
     }
 
-    /*public function stock(){
-        return $this->hasMany('App\Stock');
-    }*/
+
     public function order(){
         return $this->belongsToMany('App\Order', 'order_product', 'product_id', 'order_id');
     }

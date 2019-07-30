@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             Db::table('users')->truncate();
             Db::table('categories')->truncate();
             Db::table('products')->truncate();
-            Db::table('photos')->truncate();
+            Db::table('photos');
 
 
     }

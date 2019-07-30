@@ -9,5 +9,6 @@ $factory->define(Country::class, function (Faker $faker) {
     return [
         //
         'name'=> $faker ->country,
+        'shipment'=> 1.00
     ];
 });

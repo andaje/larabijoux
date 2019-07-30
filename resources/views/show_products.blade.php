@@ -20,7 +20,7 @@
                 @foreach($products as $product)
                         <div class=" mx-3">
                             <a class="p-3" href="{{route('product_details', $product->id)}}">
-                                <img height="150" src="{{$product->photo ? asset($product->photo->file) :'http://place-hold.it/400x400'}}" alt="">
+                                <img height="150" src="{{$product->photo ? asset($product->photo->file) :' https://via.placeholder.com/400x400'}}" alt="">
                             </a>
                             <div class="">
                                 <p class="m-0 text-center"><a href="{{route('product_details', $product->id)}}">{{ $product->name}}</a></p>

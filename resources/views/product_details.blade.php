@@ -18,7 +18,7 @@
                     @foreach($products as $product)
                         <div class="">
                             <a class="p-3" href=" ">
-                                    <img height="250" src="{{$product->photo ? asset($product->photo->file) :'http://place-hold.it/400x400'}}" alt="">
+                                    <img height="250" src="{{$product->photo ? asset($product->photo->file) :'https://via.placeholder.com/400x400'}}" alt="">
                             </a>
 
                         </div>

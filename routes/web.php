@@ -31,16 +31,17 @@ Route::get('/', 'FrontController@index')->name('/');
 Route::get('catergories','FrontController@categories')->name('categories');
 
 Route::get('show_products','FrontController@show_products')->name('show_products');
-//Route::get('shopping_cart','FrontController@cart')->name('shopping_cart');
+Route::get('shopping_cart','FrontController@cart')->name('shopping_cart');
 
 
 Route::get('show_products/{id}','FrontController@cat_prod')->name('cat_products');
 Route::get('product_details/{id}','FrontController@product_details')->name('product_details');
-//Route::get('/admin','DashboardController@index');
 
 
 
 
+Route::post('/checkout', 'FrontController@ship')->name('ship');
+//Route::get('/order', 'FrontController@step3');
 Route::get('/checkout', 'FrontController@checkout')->name('checkout');
 
 
@@ -58,18 +59,19 @@ Route::get('/search', 'AdminProductsController@search')->name('search');
 Auth::routes();
 Route::get('/admin','DashboardController@index')->middleware('admin');
 Route::get('my-orders', 'AdminOrdersController@index')->name('orders.index');
-Route::get('my-orders/{order}', 'AdminOrdersController@show')->name('orders.show');
+//Route::get('my-orders/{order}', 'AdminOrdersController@show')->name('orders.show');
+
 
 Route::group(['middleware'=>'admin'],function(){
     Route::prefix('admin')->group(function () {
 
-        Route::resource('users', "AdminUsersController");
         Route::resource('users', "AdminUsersController");
         Route::resource('addresses', "AdminAddressesController");
         Route::resource('countries', "AdminCountriesController");
         Route::resource('cities', "AdminCitiesController");
         Route::resource('categories', "AdminCategoriesController");
         Route::resource('products', "AdminProductsController");
+        Route::resource('orders', "AdminOrdersController");
 
 
 

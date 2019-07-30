@@ -2,9 +2,19 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Address;
+use App\City;
 use App\Category;
+use App\Country;
+use App\Delivery;
+use App\Order;
+use App\OrderItem;
 use App\Product;
+use App\Http\Requests\Step1Request;
+use App\Http\Requests\ShipRequest;
+//use Gloudemans\Shoppingcart\Cart;
+//use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use Cart;
@@ -13,7 +23,7 @@ use Cart;
 
 class FrontController extends Controller
 {
-
+    var $ship_cost;
     var $categories;
     var $products;
     var $title;
@@ -85,9 +95,11 @@ class FrontController extends Controller
         if(Request::isMethod('post')){
             $product_id = Request::get('product_id');
             $product = Product::find($product_id);
+            //dd($product);
             Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price));
         }
         $cart = Cart::content();
+       // dd($cart);
         //increment
         if (Request::get('product_id') && (Request::get('increment')) == 1) {
             $item = Cart::search(
@@ -105,17 +117,21 @@ class FrontController extends Controller
             $item = Cart::search(function($key, $value) { return $key->id == Request::get('product_id'); })->first();
             Cart::remove($item->rowId);
         }
-        //$message = '';
-        foreach (Cart::content() as $item) {
+        $message = [];
+
             $product = Product::find($item->id);
             if ($product->quantity - $item->qty < 0) {
-                //$message = 'Not enough products';
+                $message = 'Not enough products';
                 $product->update(['quantity' => $product->quantity - $item->qty]);
+
+            }else{
+                $mes = 'prod in cart';
             }
-                 //$mes = '';
 
 
-        }
+
+
+
 
         return view('cart',compact('token','cart', 'message', 'mes')
         );
@@ -125,10 +141,39 @@ class FrontController extends Controller
         return Redirect::away('cart');
     }
 
+    public function ship(ShipRequest $request)
+    {
+
+        $city = City::firstOrCreate([
+            'postal_code' => $request['postal_code'],
+            'name' => $request['name'],
+            'country_id' => $request['country'],
+        ]);
+
+        $delivery = Delivery::firstOrCreate([
+            'street' => $request['street'],
+            'house_nr' => $request['house_nr'],
+            'bus' => $request['bus'],
+            'city_id' => $city->id,
+        ]);
+        $user = Auth::user();
+        $user->deliveries()->syncWithoutDetaching($delivery->id);
+
+        session(['delivery_id' => $delivery->id]);
+
+        $myCountry = Country::findOrFail($request['country']);
+        session(['shipment' => $myCountry->shipment]);
+        $ship_cost = session('shipment');
+        $address = Address::where('id', '=', Auth::user()->address_id)->first();
+
+
+        return view('order', compact('ship_cost','address'));
+
+    }
 
     public function checkout(){
-
         if(Request::isMethod('post')){
+
             $product_id = Request::get('product_id');
             $product = Product::find($product_id);
             Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price));
@@ -147,12 +192,21 @@ class FrontController extends Controller
             Cart::update($item->rowId, $item->qty - 1);
 
         }
-        return view('checkout', compact ('cart', 'token','cities', 'cit','countries', 'addresses'));
+
+        $myCountry = Country::where('id', '=', 'country_id')->first();
+        $ship_cost = Country::pluck('shipment')->last();
+
+
+        return view('checkout', compact ('cart', 'token','cities', 'cit','countries', 'addresses','myCountry', 'ship_cost'));
     }
 
-
-
-    public function contact(){
+    public function check()
+    {
+        $delivery = Delivery::findOrFail(session('delivery_id'));
+        $ship_cost = session('shipment');
+        return view('order', compact('ship_cost','delivery'));
+        }
+     public function contact(){
 
         return view('contact');
     }

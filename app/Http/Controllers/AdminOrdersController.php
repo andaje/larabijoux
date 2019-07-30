@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\OrderProduct;
-use App\User;
+use App\OrderItem;
 use App\Order;
 use Illuminate\Http\Request;
 
@@ -14,8 +13,8 @@ class AdminOrdersController extends Controller
     {
         //$orders = Order::all();
         //$orders = auth()->user()->orders; // n + 1 issues
-        $orders = auth()->user()->orders()->with('products')->get(); // fix n + 1 issues
-        return view('my-orders')->with('orders', $orders);
+        $orders = Order::with('user', 'delivery.city.country')->get();
+        return view('admin.orders.index', compact('orders'));
     }
 
     public function create()
@@ -28,31 +27,34 @@ class AdminOrdersController extends Controller
 
     }
 
-    public function show(Order $order)
+    public function show()
     {
         /*if (auth()->id() !== $order->user_id) {
             return back()->withErrors('You do not have access to this!');
         }*/
-        $products = $order->products;
-        return view('my-order')->with([
-            'order' => $order,
-            'products' => $products,
-        ]);
     }
 
     public function edit($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $orderItems = OrderItem::where('order_id', $id)->get();
+
+        return view('admin.orders.edit', compact('order', 'orderItems'));
     }
 
 
     public function update(Request $request, $id)
     {
-
+        $input = $request->all();
+        $order = Order::findOrFail($id);
+        $order->update($input);
+        return redirect('admin/orders');
     }
 
     public function destroy($id)
     {
 
-    } //
+    }
+
+
 }

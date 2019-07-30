@@ -42,24 +42,26 @@
                                         <td class="cart_total">
                                             <p class="cart_total_price">€{{ $item->subtotal }}</p>
                                         </td>
-                                        {{--@if($message)
-                                        <td class="cart_price">
-                                            <p > {!! $message !!}  </p>
-                                        </td>
-                                        @else
+                                        @if($message)
                                             <td class="cart_price">
-                                            <p > {!! $mes !!}  </p>
+                                                <p > {!! $message !!} : {{ $item->name }} </p>
+                                            </td>
+                                         @else
+                                            <td class="cart_price">
+                                            <p > {!! $mes !!} : {{ $item->name }} </p>
                                         </td>
-                                        @endif--}}
+                                        @endif
                                         <td class="cart_delete">
                                             <a type="button" class="btn btn-danger btn-sm cart_quantity_delete " href="{{url("cart?product_id=$item->id&delete=1")}}"><i class="fa fa-times"></i>Remove</a>
                                         </td>
                                     </tr>
                                 @endforeach
+
                                 @else
                                     <p class="alert-info">No items in shopping cart</p>
 
                                 @endif
+
                                 </tbody>
                             </table>
                     </div>
@@ -87,7 +89,6 @@
                                             </a>
 
                                         </div>
-
                                         <div class=" col-12 d-flex justify-content-end  lineb">
                                             <h6 class="text-center mr-2"><b>Total</b></h6>
                                             <p class="text-center"><b>€ {{Cart::subTotal()}}</b></p>

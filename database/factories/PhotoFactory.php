@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Photo::class, function (Faker $faker) {
     return [
-        'file'=>'http://lorempixel.com/400/400/' ,
+        'file'=>' https://via.placeholder.com/400x400' ,
     ];
 });

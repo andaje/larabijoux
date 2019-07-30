@@ -27,13 +27,18 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Address');
     }
-    public function orders()
-    {
+
+    public function deliveries(){
+        return $this->belongsToMany('App\Delivery')->latest();
+    }
+    public function orders(){
         return $this->hasMany('App\Order');
     }
+
+
     public function isAdmin()
     {
-        if ($this->role->name == 'Admin' && $this->is_active == 1) {
+        if ($this->role->name == 'Administrator' && $this->is_active == 1) {
             return true;
         }
         return false;

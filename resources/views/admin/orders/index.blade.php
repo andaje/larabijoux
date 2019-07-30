@@ -1,35 +1,38 @@
 @extends('layouts.admin')
 @section('content')
-    <h1>All Cities</h1>
-    <div class="col-md-6">
-        <table class="table table-striped">
+    <main class="col-lg-9 col-xl-10" id="maincontent">
+        <h2 class="mt-5">All orders</h2>
+
+        <table class="table table-striped table-bordered" id="dataTable">
             <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Postal Code</th>
-                <th scope="col">Country</th>
-                <th scope="col">Created</th>
-                <th scope="col">Updated</th>
+                <th scope="col">ID</th>
+                <th scope="col">User</th>
+                <th scope="col">Delivery address</th>
+                <th scope="col">Nr</th>
+                <th scope="col">Price</th>
+                <th scope="col">Created_at</th>
+
             </tr>
             </thead>
             <tbody>
-            @if ($cities)
-                @foreach($cities as $city)
+            @if ($orders)
+                @foreach($orders as $order)
                     <tr>
-                        <td>{{$city->id}}</td>
-                        <td><a href="{{route('cities.edit', $city->id)}}">{{$city->name}}</a></td>
-                        <td>{{$city->postal_code}}</td>
-                        <td>{{$city->country ? $city->country->name : 'Uncategorized'}}</td>
-                        <td>{{$city->created_at ? $city->created_at->diffForHumans() : 'no date'}}</td>
-                        <td>{{$city->updated_at ? $city->updated_at->diffForHumans() : 'no date'}}</td>
+                        <td><a href="{{route('orders.edit', $order->id)}}">{{$order->id}}</a></td>
+                        <td>{{$order->user->first_name}} {{$order->user->last_name}}</td>
+                        <td>{{$order->delivery->street}} {{$order->delivery->house_nr}} {{$order->delivery->bus}}<br>
+                            {{$order->delivery->city->postal_code}} {{$order->delivery->city->name}} <br>
+                            {{$order->delivery->city->country->name}}</td>
+                        <td>{{$order->items}}</td>
+                        <td>{{$order->totalprice}}</td>
+                        <td>{{$order->created_at}}</td>
+
                     </tr>
                 @endforeach
             @endif
             </tbody>
         </table>
-    </div>
-    <div class="col-md-6">
 
-    </div>
+    </main>
 @stop
