@@ -118,20 +118,20 @@ class FrontController extends Controller
             Cart::remove($item->rowId);
         }
         $message = [];
-
+        foreach (Cart::content() as $item) {
             $product = Product::find($item->id);
             if ($product->quantity - $item->qty < 0) {
                 $message = 'Not enough products';
                 $product->update(['quantity' => $product->quantity - $item->qty]);
 
             }else{
-                $mes = 'prod in cart';
+                $mes = 'ok';
             }
 
 
 
 
-
+        }
 
         return view('cart',compact('token','cart', 'message', 'mes')
         );

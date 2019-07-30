@@ -43,25 +43,20 @@
                                             <p class="cart_total_price">€{{ $item->subtotal }}</p>
                                         </td>
                                         @if($message)
-                                            <td class="cart_price">
-                                                <p > {!! $message !!} : {{ $item->name }} </p>
-                                            </td>
-                                         @else
-                                            <td class="cart_price">
-                                            <p > {!! $mes !!} : {{ $item->name }} </p>
+                                        <td class="cart_price">
+                                            <p > {!! $message !!}  </p>
                                         </td>
+                                            @else {{$mes}}
                                         @endif
                                         <td class="cart_delete">
                                             <a type="button" class="btn btn-danger btn-sm cart_quantity_delete " href="{{url("cart?product_id=$item->id&delete=1")}}"><i class="fa fa-times"></i>Remove</a>
                                         </td>
                                     </tr>
                                 @endforeach
-
                                 @else
                                     <p class="alert-info">No items in shopping cart</p>
 
                                 @endif
-
                                 </tbody>
                             </table>
                     </div>

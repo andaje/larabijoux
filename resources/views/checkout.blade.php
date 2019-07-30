@@ -2,7 +2,7 @@
 
 @section('content')
 
-<main class="mx-3" xmlns="http://www.w3.org/1999/html">
+<main class="mx-3 min-vh-400" xmlns="http://www.w3.org/1999/html">
     <div class="row justify-content-md-around">
 
             @if(!Auth::check())
