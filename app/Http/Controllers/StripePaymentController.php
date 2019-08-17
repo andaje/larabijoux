@@ -60,7 +60,7 @@ class StripePaymentController extends Controller
 
             Cart::destroy();
 
-            return redirect('/');
+            return redirect('/thanks');
         }
 
 

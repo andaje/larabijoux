@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 @section('content')
     <h1>Products</h1>
+
+    <div class="col-md-6">
     {!! Form::model($product,['method'=>'PATCH', 'action'=>['AdminProductsController@update', $product->id],
     'files'=>true])
      !!}
@@ -32,6 +34,11 @@
         {!! Form::label('category_id', 'Category:') !!}
         {!! Form::select('category_id', [''=>'Choose options'] + $categories, null, ['class'=>'form-control']) !!}
     </div>
+        <div class="form-group">
+            {!! Form::label('add_quantity', 'Add Quantity:') !!}
+            {!! Form::text('add_quantity' ,null, ['class'=>'form-control']) !!}
+        </div>
+        </div>
     <div class="form-group">
         {!! Form::submit('Update Product', ['class'=>'btn btn-primary']) !!}
     </div>

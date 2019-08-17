@@ -22,7 +22,9 @@ use Illuminate\Http\Request;
 //Route::get('/', function () {
   // return view('welcome');
 //});
-
+Route::get('/thanks', function () {
+    return view('thanks');
+})->name('thanks');
 
 //Route::get('/','HomeController@index');
 Route::get('contact','FrontController@contact')->name('contact');
@@ -58,8 +60,8 @@ Route::get('/search', 'AdminProductsController@search')->name('search');
 
 Auth::routes();
 Route::get('/admin','DashboardController@index')->middleware('admin');
-Route::get('my-orders', 'AdminOrdersController@index')->name('orders.index');
-//Route::get('my-orders/{order}', 'AdminOrdersController@show')->name('orders.show');
+//Route::get('/admin/products.update_qty/{id}', 'AdminProductsController@update_qty')->name('products.update_qty');
+
 
 
 Route::group(['middleware'=>'admin'],function(){
@@ -72,14 +74,7 @@ Route::group(['middleware'=>'admin'],function(){
         Route::resource('categories', "AdminCategoriesController");
         Route::resource('products', "AdminProductsController");
         Route::resource('orders', "AdminOrdersController");
-
-
-
-
-
-
-
-        });
+    });
 });
 
 

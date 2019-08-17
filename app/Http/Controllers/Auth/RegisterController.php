@@ -89,7 +89,7 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'address_id' => $address->id,
         ]);
-        // $user->roles()->attach(2);
+
 
         return $user;
     }

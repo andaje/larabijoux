@@ -1,4 +1,4 @@
-<footer>
+<footer class="fixed-bottom">
     <div class="row mt-4  bacg">
         <div class=" col-12 col-md-4 text-center lin">
             <h5 class="mt-2  dim">About</h5>

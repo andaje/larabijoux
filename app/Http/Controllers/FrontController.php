@@ -98,6 +98,7 @@ class FrontController extends Controller
             //dd($product);
             Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price));
         }
+
         $cart = Cart::content();
        // dd($cart);
         //increment
@@ -107,6 +108,7 @@ class FrontController extends Controller
                     return $key->id == Request::get('product_id');
                 })->first();
             Cart::update($item->rowId, $item->qty + 1);
+
         }
         if (Request::get('product_id') && (Request::get('decrease')) == 1) {
             $item = Cart::search(function($key, $value) { return $key->id == Request::get('product_id'); })->first();
@@ -117,23 +119,17 @@ class FrontController extends Controller
             $item = Cart::search(function($key, $value) { return $key->id == Request::get('product_id'); })->first();
             Cart::remove($item->rowId);
         }
-        $message = [];
+
+        $messages = [];
+
         foreach (Cart::content() as $item) {
             $product = Product::find($item->id);
-            if ($product->quantity - $item->qty < 0) {
-                $message = 'Not enough products';
-                $product->update(['quantity' => $product->quantity - $item->qty]);
-
-            }else{
-                $mes = 'ok';
+            if ($product->quantity < $item->qty) {
+                $messages[$item->id] = 'Not enough products';
             }
-
-
-
-
         }
 
-        return view('cart',compact('token','cart', 'message', 'mes')
+        return view('cart',compact('token','cart', 'messages')
         );
     }
     public function clear_cart(){

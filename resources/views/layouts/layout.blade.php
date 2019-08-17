@@ -109,7 +109,7 @@
 </nav>
 </header>
 @yield('content')
-<footer>
+<footer >
     <div class="row mt-1  bacg">
         <div class=" col-12 col-md-4 text-center lin">
             <h5 class="mt-2  dim">About</h5>

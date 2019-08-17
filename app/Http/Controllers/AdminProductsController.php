@@ -6,7 +6,7 @@ use App\Product;
 use App\Category;
 use App\Photo;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 
 class AdminProductsController extends Controller
@@ -64,26 +64,35 @@ class AdminProductsController extends Controller
     public function update(Request $request, $id)
     {
         $product=Product::findOrFail($id);
-        $input = $request->all();//alle velden uit het formulier in $input
+        if ($addQty = $request->get('add_quantity')) {
+            $product->quantity += $addQty;
+        } elseif ($newQty = $request->get('quantity')) {
+            $product->quantity = $newQty;
+        }
+        $product->save();
+        $input = $request->all();
         if($file = $request->file('photo_id')){
-            $name = time() . $file->getClientOriginalName();//samenstelling bestandsnaam
-            $file->move('images', $name);//het kopieren naar de map images
-            $photo = Photo::create(['file'=>$name]);//in de tabel photo id en naam aanmaken
+            $name = time() . $file->getClientOriginalName();
+            $file->move('images', $name);
+            $photo = Photo::create(['file'=>$name]);
             $input['photo_id'] = $photo->id; //
         }
+
         $product->update($input);
+        $product->save();
+
         return redirect('/admin/products');
     }
 
-   /* public function update_qty(Request $request, $id){
-        $product = Product::findOrFail($id);
-        //$products = Product::firstOrCreate(['name' => request('product_name')]);
-        $product->update(['quantity'=>$request->get('quantity')]);
-        $new_quantity = $request->all()['add_quantity'] ;
-        DB::table('products')->increment('quantity', $new_quantity);
+   /*public function update_qty($id){
+        $products = Product::findOrFail($id);
 
-        return redirect('/admin/products');
-    }*/
+        /*$products->update(['quantity'=>$request->get('quantity')]);
+        $new_quantity = $request->all()['add_quantity'] ;
+        DB::table('products')->increment('quantity', $new_quantity);*/
+
+        //return redirect('admin.products.update_qty', compact('products','add_quantity','new_quantity'));
+   // }*/
    public function destroy($id)
     {
         $product = Product::findOrFail($id);

@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-    <main>
+    <main >
             <section id="cart_items">
                 <div class="container">
                     <div class="table-responsive cart_info">
@@ -21,9 +21,7 @@
                                 @foreach($cart as $item)
 
                                     <tr>
-                                        {{--<td class="cart_product">
-                                            <a href=""><img src="images/cart/one.png" alt=""></a>
-                                        </td>--}}
+
                                         <td class="cart_description">
                                             <h4><a href="">{{ $item->name }}</a></h4>
                                             <p>Code:{{ $item->id }}</p>
@@ -42,12 +40,7 @@
                                         <td class="cart_total">
                                             <p class="cart_total_price">€{{ $item->subtotal }}</p>
                                         </td>
-                                        @if($message)
-                                        <td class="cart_price">
-                                            <p > {!! $message !!}  </p>
-                                        </td>
-                                            @else {{$mes}}
-                                        @endif
+                                        <td>{{ $messages[$item->id]  ?? '' }}
                                         <td class="cart_delete">
                                             <a type="button" class="btn btn-danger btn-sm cart_quantity_delete " href="{{url("cart?product_id=$item->id&delete=1")}}"><i class="fa fa-times"></i>Remove</a>
                                         </td>
