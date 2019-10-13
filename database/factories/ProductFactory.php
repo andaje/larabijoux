@@ -16,8 +16,8 @@ $factory->define(Product::class, function (Faker $faker) {
         'title' => 'Product',
         'description' => $this->faker->paragraph,
         'quantity' => 11,
-        'price' => 10.00
-
+        'price' => 10.00,
+        'weight' => 00.00
 
     ];
 });
