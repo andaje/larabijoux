@@ -28,15 +28,20 @@
                             <div>
                                 <p class="text-center">€ {{ $product->price}}</p></div>
 
-                            <div class="" >
+                            <div class="text-center" >
+                                @if(!Auth::check())
+                                    <a href ="{{route('login')}}"  class="btn btn-danger">
+                                        <i class="fas fa-shopping-basket"></i>First login</a>
+                                @else
                                 <form action="{{url('cart')}}" method="post">
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                    <button type="submit" class="btn btnAdd ml-3 text-center cart" style="width: 160px";>
+                                    <button type="submit" class="btn btnAdd pl-4 text-center cart" style="width: 160px";>
                                         <i class="fa fa-shopping-cart"></i>
                                         Add to cart
                                     </button>
                                 </form>
+                                  @endif
                             </div>
                         </div>
 

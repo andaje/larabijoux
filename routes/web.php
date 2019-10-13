@@ -60,6 +60,7 @@ Route::get('/search', 'AdminProductsController@search')->name('search');
 
 Auth::routes();
 Route::get('/admin','DashboardController@index')->middleware('admin');
+
 //Route::get('/admin/products.update_qty/{id}', 'AdminProductsController@update_qty')->name('products.update_qty');
 
 

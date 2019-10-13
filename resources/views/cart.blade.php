@@ -5,6 +5,7 @@
             <section id="cart_items">
                 <div class="container">
                     <div class="table-responsive cart_info">
+
                         @if(count($cart))
                             <table class="table table-condensed">
                                 <thead>
